@@ -14,8 +14,8 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
 
-const pages = ["DM", "Player", "Subscriptions"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["DM", "Player", "Store"];
+const settings = ["Profile", "Account", "Logout"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -89,7 +89,12 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  component={Link}
+                  to={`/${page.toLowerCase()}`}
+                >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -118,7 +123,8 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                component={Link}
+                to={`/${page.toLowerCase()}`}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}
