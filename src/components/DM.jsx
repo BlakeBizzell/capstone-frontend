@@ -1,6 +1,6 @@
 
 
-function DM() { 
+function DMs() { 
   return (
     <div>
       <h1>This is the DMs Dashboard</h1>
@@ -8,4 +8,4 @@ function DM() {
   );
 }
 
-export default DM; 
+export default DMs; 

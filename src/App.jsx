@@ -5,7 +5,7 @@ import NavBar from "./components/NavBar";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Home from "./components/Home";
-import DM from "./components/DM"; 
+import DMs from "./components/DM"; 
 import Player from "./components/Player"; 
 import Store from "./components/Store";
 
@@ -20,7 +20,7 @@ function App() {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/player" element={<Player />} /> 
-          <Route path="/DM" element={<DM />} /> 
+          <Route path="/DM" element={<DMs />} /> 
           <Route path="/Store" element={<Store />} /> 
         </Routes>
       </div>
