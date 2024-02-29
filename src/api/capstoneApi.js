@@ -51,6 +51,13 @@ export const capstoneApi = createApi({
         body: userData,
       }),
     }),
+    logOutUser: builder.mutation({
+      query: (userData) => ({
+        url: "/auth/users/logout",
+        method: "DELETE",
+        body: userData,
+      }),
+    }),
     addToCart: builder.mutation({
       query: ({ userId, productId, quantity }) => ({
         url: `/auth/users/${userId}/cart`,
@@ -81,6 +88,7 @@ export const {
   useUpdateUserMutation,
   useAddUserMutation,
   useLoginUserMutation,
+  useLogOutUserMutation,
   useAddToCartMutation,
   useRemoveFromCartMutation,
   useGetCartItemsQuery,
