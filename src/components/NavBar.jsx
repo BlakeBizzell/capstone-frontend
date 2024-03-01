@@ -20,7 +20,7 @@ import { useLogOutUserMutation } from "../api/capstoneApi";
 const pages = ["DM", "Store"];
 const settings = ["Profile", "Account", "Logout"];
 
-function ResponsiveAppBar() {
+function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [logOutUser] = useLogOutUserMutation();
@@ -201,4 +201,4 @@ function ResponsiveAppBar() {
   );
 }
 
-export default ResponsiveAppBar;
+export default NavBar;

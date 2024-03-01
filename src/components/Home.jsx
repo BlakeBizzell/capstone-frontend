@@ -1,13 +1,15 @@
-import Pricing from "./Pricing";
-import Hero from "./Hero";
-import Features from "./Features";
+import Pricing from "./homePage/Pricing";
+import Hero from "./homePage/Hero";
+import Highlights from "./homePage/Highlights";
+import FAQ from "./homePage/FAQ";
 
 function Dashboard() {
   return (
     <div>
       <Hero />
-      <Features />
+      <Highlights />
       <Pricing />
+      <FAQ />
     </div>
   );
 }
