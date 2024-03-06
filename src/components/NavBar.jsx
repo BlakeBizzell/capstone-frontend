@@ -188,6 +188,8 @@ function NavBar() {
                     onClick={
                       setting === "Logout" ? handleLogout : handleCloseUserMenu
                     }
+                    component={Link}
+                    to={setting === "Account" ? "/myAccount" : ""}
                   >
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
