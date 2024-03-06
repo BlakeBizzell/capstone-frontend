@@ -16,10 +16,10 @@ const tiers = [
     title: 'Free',
     price: '0',
     description: [
-      '10 users included',
-      '2 GB of storage',
-      'Help center access',
-      'Email support',
+      'Prebuilt Dashboard Access',
+      'Essential DM Tools',
+      'Intiutive Interface Design',
+      'Comprehensive Game Resources',
     ],
     buttonText: 'Sign up for free',
     buttonVariant: 'outlined',
@@ -27,26 +27,26 @@ const tiers = [
   {
     title: 'Professional',
     subheader: 'Recommended',
-    price: '15',
+    price: '5',
     description: [
-      '20 users included',
-      '10 GB of storage',
-      'Help center access',
-      'Priority email support',
-      'Dedicated team',
-      'Best deals',
+      'Custom Dashboard creation',
+      'Result Saving Functionality',
+      'Enhanced Data Managment',
+      'Advanced Design Options',
+      'Personalized Player tracking',
+      'Tailored Content Creation',
     ],
     buttonText: 'Start now',
     buttonVariant: 'contained',
   },
   {
-    title: 'Enterprise',
-    price: '30',
+    title: 'Donate',
+    price: '5',
     description: [
-      '50 users included',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
+      'Supportive Community Contribution',
+      'Paying it foward Option',
+      'Empower Fellow Dms',
+      'Generosity in action',
     ],
     buttonText: 'Contact us',
     buttonVariant: 'outlined',
@@ -77,10 +77,7 @@ export default function Pricing() {
           Pricing
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          Quickly build an effective pricing table for your potential customers with
-          this layout. <br />
-          It&apos;s built with default Material UI components with little
-          customization.
+        Choose the subscription tier that suits your Dungeon Mastering needs best. Whether you prefer the convenience of our prebuilt dashboard and tools in Tier 1, the customization options and result-saving capabilities of Tier 2, or the opportunity to support fellow DMs with Tier 3s donation feature, our platform empowers you to tailor your experience to your preferences. With options designed to cater to every style and budget, its your adventure—use what works best for you. <br />
         </Typography>
       </Box>
       <Grid container spacing={3} alignItems="center" justifyContent="center">

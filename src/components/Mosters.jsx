@@ -8,7 +8,7 @@ import {
   Box,
 } from "@mui/material";
 import { fetchMonsters, selectMonsters } from "../api/open5eApi";
-import Dice from "./Dice";
+
 
 function Monsters() {
   const [randomMonster, setRandomMonster] = useState(null);
