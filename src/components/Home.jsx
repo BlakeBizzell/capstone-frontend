@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Pricing from "./homePage/Pricing";
 import Hero from "./homePage/Hero";
 import Highlights from "./homePage/Highlights";
@@ -12,7 +13,13 @@ function Dashboard() {
 
   const userId = localStorage.getItem("userId");
   const { data } = useGetUserQuery(userId);
-  dispatch(setUser(data));
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setUser(data));
+    }
+  }, [data, dispatch]);
+
   return (
     <div>
       <Hero />

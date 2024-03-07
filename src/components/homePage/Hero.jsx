@@ -2,9 +2,8 @@ import { alpha } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Stack from "@mui/material/Stack";
-import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
 export default function Hero() {
@@ -67,31 +66,22 @@ export default function Hero() {
             useFlexGap
             sx={{ pt: 2, width: { xs: "100%", sm: "auto" } }}
           >
-            <TextField
-              id="outlined-basic"
-              hiddenLabel
-              size="small"
-              variant="outlined"
-              aria-label="Enter your email address"
-              placeholder="Your email address"
-              inputProps={{
-                autocomplete: "off",
-                ariaLabel: "Enter your email address",
-              }}
-            />
-            {/* <Link to="/sign-up" style={{ textDecoration: "none" }}> */}
-              <Button variant="contained" color="primary">
-                Start now
-              </Button>
-            {/* </Link> */}
+            <Button
+              variant="contained"
+              color="primary"
+              component={Link}
+              to="/DM"
+            >
+              Start now
+            </Button>
+            
           </Stack>
           <Typography
             variant="caption"
             textAlign="center"
             sx={{ opacity: 0.8 }}
           >
-            Click &quot;Start now&quot; to join our email list and begin your
-            adventure
+            Click &quot;Start now&quot; to begin your adventure
           </Typography>
         </Stack>
         <Box

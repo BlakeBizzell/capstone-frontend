@@ -13,7 +13,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import AdbIcon from "@mui/icons-material/Adb";
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import { Link } from "react-router-dom";
 import { useLogOutUserMutation } from "../api/capstoneApi";
 
@@ -55,7 +55,7 @@ function NavBar() {
     <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <AutoStoriesIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -71,7 +71,7 @@ function NavBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            Home
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -115,7 +115,7 @@ function NavBar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <AutoStoriesIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -151,10 +151,10 @@ function NavBar() {
             {!userId && (
               <>
                 <Button color="inherit" component={Link} to="/sign-in">
-                  Sign In
+                  Login
                 </Button>
                 <Button color="inherit" component={Link} to="/sign-up">
-                  Sign Up
+                  Create Your Account
                 </Button>
               </>
             )}
@@ -189,7 +189,13 @@ function NavBar() {
                       setting === "Logout" ? handleLogout : handleCloseUserMenu
                     }
                     component={Link}
-                    to={setting === "Account" ? "/myAccount" : ""}
+                    to={
+                      setting === "Account"
+                        ? "/myAccount"
+                        : setting === "Profile"
+                        ? "/profile"
+                        : ""
+                    }
                   >
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>

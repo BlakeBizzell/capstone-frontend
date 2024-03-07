@@ -7,8 +7,7 @@ import {
   Button,
   Box,
 } from "@mui/material";
-import { fetchMonsters, selectMonsters } from "../api/open5eApi";
-
+import { fetchMonsters, selectMonsters } from "../../api/open5eApi";
 
 function Monsters() {
   const [randomMonster, setRandomMonster] = useState(null);
@@ -26,11 +25,11 @@ function Monsters() {
   };
 
   return (
-    <Container sx={{ bgcolor: "grey", p: 3, mr:100, ml: 3, borderRadius: 8}}>
+    <Container sx={{ bgcolor: "grey", p: 3, ml: 3, borderRadius: 8 }}>
       <Typography variant="h3" gutterBottom>
         Monsters Dashboard
       </Typography>
-      
+
       <Typography variant="h5" gutterBottom>
         Random Monster Generator
       </Typography>

@@ -62,8 +62,7 @@ export default function FAQ() {
             >
               You can reach our customer support team by emailing
               <Link> support@email.com </Link>
-              or calling our toll-free number. We&apos;re here to assist you
-              promptly.
+              We&apos;re here to assist you promptly.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -138,7 +137,9 @@ export default function FAQ() {
               gutterBottom
               sx={{ maxWidth: { sm: "100%", md: "70%" } }}
             >
-              Not at this time. Currently our dashboards are only built of 5e rule sets but other versions are in the works. Join or email list to stay up to date when the updates come out. 
+              Not at this time. Currently our dashboards are only built of 5e
+              rule sets but other versions are in the works. Join or email list
+              to stay up to date when the updates come out.
             </Typography>
           </AccordionDetails>
         </Accordion>
