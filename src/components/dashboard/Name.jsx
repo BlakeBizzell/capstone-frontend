@@ -12,7 +12,7 @@ const RandomNameGenerator = () => {
 
     // Generate first name
     let firstName = "";
-    const firstNameLength = Math.floor(Math.random() * 3) + 3; // Random length between 3 to 10
+    const firstNameLength = Math.floor(Math.random() * 3) + 3; 
     for (let i = 0; i < firstNameLength; i++) {
       if (i % 2 === 0) {
         firstName += consonants.charAt(
@@ -25,7 +25,7 @@ const RandomNameGenerator = () => {
 
     // Generate last name
     let lastName = "";
-    const lastNameLength = Math.floor(Math.random() * 8) + 3; // Random length between 3 to 10
+    const lastNameLength = Math.floor(Math.random() * 8) + 3; 
     for (let i = 0; i < lastNameLength; i++) {
       if (i % 2 === 0) {
         lastName += consonants.charAt(
