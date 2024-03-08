@@ -13,12 +13,12 @@ import {
   Tooltip,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import { Link } from "react-router-dom";
 import { useLogOutUserMutation } from "../api/capstoneApi";
 
-const pages = ["DM", "Store"];
-const settings = ["Profile", "Account", "Logout"];
+const pages = ["Dashboard"];
+const settings = ["Profile", "Account", "Logout", "Donate"];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -55,7 +55,6 @@ function NavBar() {
     <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AutoStoriesIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -71,7 +70,9 @@ function NavBar() {
               textDecoration: "none",
             }}
           >
-            Home
+            <AutoStoriesIcon
+              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+            />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -115,7 +116,9 @@ function NavBar() {
               ))}
             </Menu>
           </Box>
-          <AutoStoriesIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <AutoStoriesIcon
+            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+          />
           <Typography
             variant="h5"
             noWrap
@@ -194,10 +197,12 @@ function NavBar() {
                         ? "/myAccount"
                         : setting === "Profile"
                         ? "/profile"
+                        : setting === "Donate"
+                        ? "/Donate"
                         : ""
                     }
                   >
-                    <Typography textAlign="center">{setting}</Typography>
+                    {setting === "Donate" ? "Donate" : setting}
                   </MenuItem>
                 ))}
               </Menu>

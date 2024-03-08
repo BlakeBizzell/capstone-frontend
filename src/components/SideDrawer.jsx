@@ -1,37 +1,21 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import { Typography } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchMonsters } from "../api/open5eApi";
 
-const drawerWidth = 240;
+const drawerWidth = 150;
 
-export default function SideDrawer({ dashboardItems, setDashboardItems }) {
-  const [randomMonster, setRandomMonster] = useState(null);
-  const monsters = useSelector((state) => state.open5eApi.monsters);
-  const isLoading = useSelector((state) => state.open5eApi.isLoading);
-  const dispatch = useDispatch();
+export default function SideDrawer() {
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const handleButtonClick = (text) => {
-    if (text === "Monsters") {
-      dispatch(fetchMonsters());
-      getRandomMonster();
-    } else {
-      setDashboardItems((prevItems) => [...prevItems, text]);
-    }
-  };
-
-  const getRandomMonster = () => {
-    const randomIndex = Math.floor(Math.random() * monsters.length);
-    setRandomMonster(monsters[randomIndex]);
+    setSelectedItem(text);
+    console.log("Clicked item:", text);
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
+    <Box sx={{ display: "flex", zIndex: -2 }}>
       <Drawer
         variant="permanent"
         sx={{
@@ -44,35 +28,37 @@ export default function SideDrawer({ dashboardItems, setDashboardItems }) {
         }}
       >
         <Toolbar />
-        <Box sx={{ overflow: "auto" }}>
-          {["Monsters", "Spells", "Equipment", "MagicItems", "Weapons", "Armor"].map((text, index) => (
-            <Box key={text} onClick={() => handleButtonClick(text)} sx={{ p: 2, cursor: "pointer" }}>
-              <Typography>{text}</Typography>
-            </Box>
-          ))}
-          {["Race", "Class", "Background", "Feats", "Rules", "Search"].map((text, index) => (
-            <Box key={text} onClick={() => handleButtonClick(text)} sx={{ p: 2, cursor: "pointer" }}>
+        <Box sx={{ overflow: "auto", zindex: -2}}>
+          {[
+            "Spells",
+            "Spell List",
+            "Monsters",
+            "Documents",
+            "Backgrounds",
+            "Planes",
+            "Sections",
+            "Feats",
+            "Conditions",
+            "Races",
+            "Classes",
+            "Magic Items",
+            "Weapons",
+            "Armor"
+          ].map((text, index) => (
+            <Box
+              key={text}
+              onClick={() => handleButtonClick(text)}
+              sx={{
+                p: 2,
+                cursor: "pointer",
+                backgroundColor: selectedItem === text ? "lightgrey" : "inherit", 
+              }}
+            >
               <Typography>{text}</Typography>
             </Box>
           ))}
         </Box>
       </Drawer>
-      <Box sx={{ flexGrow: 1, p: 3 }}>
-        {randomMonster && (
-          <Box
-            sx={{
-              p: 2,
-              bgcolor: "grey",
-              mt: 2,
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Typography variant="h6">{randomMonster.name}</Typography>
-            {/* Add more details about the random monster */}
-          </Box>
-        )}
-      </Box>
     </Box>
   );
 }

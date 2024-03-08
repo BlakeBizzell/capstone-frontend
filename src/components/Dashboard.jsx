@@ -2,13 +2,14 @@ import { useState } from "react";
 import { Container, Grid, Box, IconButton, Typography } from "@mui/material";
 import Draggable from "react-draggable";
 import DeleteIcon from "@mui/icons-material/Delete";
-// import SideDrawer from "./SideDrawer";
+import SideDrawer from "./SideDrawer";
 import Dice from "./dashboard/Dice";
 import Monsters from "./dashboard/Mosters";
 import RandomNameGenerator from "./dashboard/Name";
 import GoldPiece from "./dashboard/Shop";
 import InitiativeTracker from "./dashboard/Initiative";
 import PlayerTable from "./dashboard/playersInfo";
+import TreasureGenerator from "./dashboard/Treasure";
 
 function DMs() {
   const [dashboardItems, setDashboardItems] = useState([]);
@@ -31,10 +32,11 @@ function DMs() {
         DMs Dashboard
       </Typography>
 
-      {/* <SideDrawer
+       <SideDrawer
         dashboardItems={dashboardItems}
         setDashboardItems={setDashboardItems}
-      /> */}
+        sx={{zIndex: -2 }}
+      /> 
       
       <Grid container spacing={2}>
         {dashboardItems.map((item, index) => (
@@ -75,6 +77,9 @@ function DMs() {
         </Grid>
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <InitiativeTracker />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <TreasureGenerator />
         </Grid>
     </Container>
   );
