@@ -22,8 +22,8 @@ class TreasureGenerator extends React.Component {
       armor: 0,
       weapon: 0,
       treasure: [],
-      width: 500, 
-      height: 400, 
+      width: 500,
+      height: 400,
     };
   }
 
@@ -65,40 +65,55 @@ class TreasureGenerator extends React.Component {
         type: "Armor",
         options: ["Plate Armor", "Chain Mail", "Leather Armor", "Scale Mail"],
         amount: this.state.armor,
-        unit: "piece(s)", 
+        unit: "piece(s)",
       },
       {
         type: "Weapon",
         options: ["Longsword", "Shortsword", "Battleaxe", "Warhammer"],
         amount: this.state.weapon,
-        unit: "piece(s)", 
+        unit: "piece(s)",
       },
     ];
-  
+
     let treasure = [];
-  
+
     treasureTypes.forEach((type) => {
       if (type.amount && parseInt(type.amount) > 0) {
-        let item = { type: type.type };
-  
-        if (type.amount && parseInt(type.amount) > 0) {
-          item.amount = type.amount;
-          item.unit = type.unit || "gold pieces";
-          treasure.push(item);
+        if (type.type === "Coins") {
+          const coinAmount =
+            Math.floor(Math.random() * (type.max - type.min + 1)) + type.min;
+          treasure.push({
+            type: type.type,
+            amount: coinAmount,
+            unit: type.unit,
+          });
         } else if (type.options && type.options.length > 0) {
-          const randomIndex = Math.floor(Math.random() * type.options.length);
-          item.name = type.options[randomIndex];
-          treasure.push(item);
+          for (let i = 0; i < type.amount; i++) {
+            const randomIndex = Math.floor(Math.random() * type.options.length);
+            const itemName = type.options[randomIndex];
+            treasure.push({ type: type.type, name: itemName });
+          }
         }
       }
     });
-  
+
     this.setState({ treasure });
   };
-  
 
   handleResize = (event, { size }) => {
     this.setState({ width: size.width, height: size.height });
+  };
+
+  clearfield = () => {
+    this.setState({
+      coinAmount: 0,
+      gemAmount: 0,
+      artObjectAmount: 0,
+      magicItemAmount: 0,
+      armor: 0,
+      weapon: 0,
+      treasure: [],
+    });
   };
 
   render() {
@@ -108,8 +123,8 @@ class TreasureGenerator extends React.Component {
           width={this.state.width}
           height={this.state.height}
           onResize={this.handleResize}
-          minConstraints={[300, 200]} 
-          maxConstraints={[800, 600]} 
+          minConstraints={[300, 200]}
+          maxConstraints={[800, 600]}
         >
           <Container sx={{ bgcolor: "grey", p: 3, ml: 3, borderRadius: 8 }}>
             <Typography variant="h3" gutterBottom>
@@ -121,6 +136,13 @@ class TreasureGenerator extends React.Component {
               style={{ marginBottom: "20px" }}
             >
               Generate Treasure
+            </Button>
+            <Button
+              variant="contained"
+              onClick={this.clearfield}
+              style={{ marginBottom: "20px", marginLeft: "20px" }}
+            >
+              Clear
             </Button>
             <div style={{ marginBottom: "20px" }}>
               <TextField
