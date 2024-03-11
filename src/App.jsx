@@ -21,6 +21,7 @@ import MagicItems from "./components/pages/magic-Items";
 import Weapons from "./components/pages/weapons";
 import Races from "./components/pages/Races";
 import Feats from "./components/pages/Feats";
+import SpellDetails from "./components/pages/SpellDetails";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
           <Route path="/weapons" element={<Weapons />} />
           <Route path="/Races" element={<Races />} />
           <Route path="/Feats" element={<Feats />} />
+          <Route path="/spells/:spellName" element={<SpellDetails />} />
         </Routes>
       </div>
     </>
