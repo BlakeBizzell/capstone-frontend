@@ -22,6 +22,7 @@ import Weapons from "./components/pages/weapons";
 import Races from "./components/pages/Races";
 import Feats from "./components/pages/Feats";
 import SpellDetails from "./components/pages/SpellDetails";
+import MonsterDetails from "./components/pages/MonsterDetails";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
           <Route path="/Races" element={<Races />} />
           <Route path="/Feats" element={<Feats />} />
           <Route path="/spells/:spellName" element={<SpellDetails />} />
+          <Route path="/monsters/:monsterName" element={<MonsterDetails />} />
         </Routes>
       </div>
     </>

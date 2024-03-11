@@ -11,7 +11,9 @@ function SpellDetails() {
   useEffect(() => {
     const fetchSpellDetails = async () => {
       try {
-        const response = await axios.get(`https://api.open5e.com/spells/${spellName}`);
+        const response = await axios.get(
+          `https://api.open5e.com/spells/${spellName}`
+        );
         setSpellDetails(response.data);
       } catch (error) {
         console.error("Error fetching spell details:", error);
@@ -30,17 +32,25 @@ function SpellDetails() {
   return (
     <div>
       <h1>{spellDetails.name}</h1>
-      <p><strong>Range:</strong> {spellDetails.range}</p>
-      <p><strong>Casting Time:</strong> {spellDetails.casting_time}</p>
-      <p><strong>Duration:</strong> {spellDetails.duration}</p>
-      <p><strong>Components:</strong> {spellDetails.components}</p>
-      <p><strong>Description:</strong> {spellDetails.desc}</p>
-      {/* Add more details as needed */}
+      <p>
+        <strong>Range:</strong> {spellDetails.range}
+      </p>
+      <p>
+        <strong>Casting Time:</strong> {spellDetails.casting_time}
+      </p>
+      <p>
+        <strong>Duration:</strong> {spellDetails.duration}
+      </p>
+      <p>
+        <strong>Components:</strong> {spellDetails.components}
+      </p>
+      <p>
+        <strong>Description:</strong> {spellDetails.desc}
+      </p>
 
-      {/* MUI Page Button */}
       <Button
         component={Link}
-        to="/spells"
+        to="/spell-list"
         variant="contained"
         color="primary"
         style={{ marginTop: "20px" }}

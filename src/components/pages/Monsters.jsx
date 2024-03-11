@@ -1,10 +1,94 @@
-function monsterList() {
-    return (
-      <div>
-        <h1>This is the Monsters</h1>
-      </div>
-    );
-  }
-  
-  export default monsterList;
-  
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+
+function MonsterList() {
+  const [monsterData, setMonsterData] = useState([]);
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.open5e.com/monsters?page=${page}`
+        );
+        setMonsterData(response.data.results);
+      } catch (error) {
+        console.error("Error fetching monster data:", error);
+      }
+    };
+
+    fetchData();
+  }, [page]);
+
+  const handleNextPage = () => {
+    setPage(page + 1);
+  };
+
+  return (
+    <div
+      style={{
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <h1 style={{ textAlign: "center" }}>Monster List</h1>
+      <table
+        style={{
+          width: "100%",
+          borderCollapse: "collapse",
+          border: "1px solid black",
+        }}
+      >
+        <thead>
+          <tr>
+            <th style={{ border: "1px solid black", padding: "8px" }}>Name</th>
+            <th style={{ border: "1px solid black", padding: "8px" }}>Type</th>
+            <th style={{ border: "1px solid black", padding: "8px" }}>CR</th>
+            <th style={{ border: "1px solid black", padding: "8px" }}>Size</th>
+            <th style={{ border: "1px solid black", padding: "8px" }}>Hit Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          {monsterData.map((monster, index) => (
+            <tr key={index}>
+              <td style={{ border: "1px solid black", padding: "8px" }}>
+                <Link
+                  to={`/monsters/${monster.name.toLowerCase().replace(/\s+/g, "-")}`}
+                >
+                  {monster.name}
+                </Link>
+              </td>
+              <td style={{ border: "1px solid black", padding: "8px" }}>
+                {monster.type}
+              </td>
+              <td style={{ border: "1px solid black", padding: "8px" }}>
+                {monster.challenge_rating}
+              </td>
+              <td style={{ border: "1px solid black", padding: "8px" }}>
+                {monster.size}
+              </td>
+              <td style={{ border: "1px solid black", padding: "8px" }}>
+                {monster.hit_points}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <Button
+        variant="contained"
+        color="primary"
+        style={{ alignSelf: "center", marginTop: "auto" }}
+        onClick={handleNextPage}
+      >
+        Next Page
+      </Button>
+    </div>
+  );
+}
+
+export default MonsterList;
