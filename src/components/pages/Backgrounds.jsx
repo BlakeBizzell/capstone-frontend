@@ -1,4 +1,4 @@
-function Profile() {
+function Background() {
     return (
       <div>
         <h1>This is the Background page</h1>
@@ -6,5 +6,5 @@ function Profile() {
     );
   }
   
-  export default Profile;
+  export default Background;
   

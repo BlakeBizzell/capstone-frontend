@@ -8,8 +8,7 @@ import {
   ListItemText,
   Container,
 } from "@mui/material";
-import { Resizable } from "react-resizable";
-import Draggable from "react-draggable";
+
 
 class TreasureGenerator extends React.Component {
   constructor(props) {
@@ -118,14 +117,8 @@ class TreasureGenerator extends React.Component {
 
   render() {
     return (
-      <Draggable>
-        <Resizable
-          width={this.state.width}
-          height={this.state.height}
-          onResize={this.handleResize}
-          minConstraints={[300, 200]}
-          maxConstraints={[800, 600]}
-        >
+
+  
           <Container sx={{ bgcolor: "grey", p: 3, ml: 3, borderRadius: 8 }}>
             <Typography variant="h3" gutterBottom>
               Treasure Generator
@@ -210,8 +203,6 @@ class TreasureGenerator extends React.Component {
               ))}
             </List>
           </Container>
-        </Resizable>
-      </Draggable>
     );
   }
 }

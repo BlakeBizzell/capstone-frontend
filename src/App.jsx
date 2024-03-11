@@ -10,6 +10,17 @@ import Store from "./components/Donate";
 import AccountInfo from "./components/accounttabs/myAccount";
 import UpdateUserInfo from "./components/accounttabs/updateUserInfo";
 import Profile from "./components/accounttabs/profile";
+import SpellList from "./components/pages/spell-list";
+import Armor from "./components/pages/Armor";
+import Background from "./components/pages/Backgrounds";
+import ClassesList from "./components/pages/Classes";
+import MonsterList from "./components/pages/Monsters";
+import Conditions from "./components/pages/Conditions";
+import Documents from "./components/pages/Documents";
+import MagicItems from "./components/pages/magic-Items";
+import Weapons from "./components/pages/weapons";
+import Races from "./components/pages/Races";
+import Feats from "./components/pages/Feats";
 
 function App() {
   return (
@@ -32,6 +43,17 @@ function App() {
           <Route path="/myAccount" element={<AccountInfo />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/updateUserInfo" element={<UpdateUserInfo />} />
+          <Route path="/spell-list" element={<SpellList />} />
+          <Route path="/Armor" element={<Armor />} />
+          <Route path="/backgrounds" element={<Background />} />
+          <Route path="/Classes" element={<ClassesList />} />
+          <Route path="/Monsters" element={<MonsterList />} />
+          <Route path="/Conditions" element={<Conditions />} />
+          <Route path="/Documents" element={<Documents />} />
+          <Route path="/magic-Items" element={<MagicItems />} />
+          <Route path="/weapons" element={<Weapons />} />
+          <Route path="/Races" element={<Races />} />
+          <Route path="/Feats" element={<Feats />} />
         </Routes>
       </div>
     </>

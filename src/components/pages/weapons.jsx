@@ -1,4 +1,4 @@
-function Profile() {
+function Weapons() {
     return (
       <div>
         <h1>This is the Weapons Page</h1>
@@ -6,5 +6,5 @@ function Profile() {
     );
   }
   
-  export default Profile;
+  export default Weapons;
   

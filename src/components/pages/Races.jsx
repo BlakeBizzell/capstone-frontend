@@ -1,4 +1,4 @@
-function Profile() {
+function Races() {
     return (
       <div>
         <h1>This is the Races</h1>
@@ -6,5 +6,5 @@ function Profile() {
     );
   }
   
-  export default Profile;
+  export default Races;
   

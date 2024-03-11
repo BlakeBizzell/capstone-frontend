@@ -1,4 +1,4 @@
-function Profile() {
+function Conditions() {
     return (
       <div>
         <h1>This is the Condition page</h1>
@@ -6,5 +6,5 @@ function Profile() {
     );
   }
   
-  export default Profile;
+  export default Conditions;
   

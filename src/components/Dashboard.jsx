@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { Container, Grid, Box, IconButton, Typography } from "@mui/material";
-import Draggable from "react-draggable";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { Container, Grid, Typography } from "@mui/material";
 import SideDrawer from "./SideDrawer";
 import Dice from "./dashboard/Dice";
 import Monsters from "./dashboard/Mosters";
@@ -13,12 +11,6 @@ import TreasureGenerator from "./dashboard/Treasure";
 
 function DMs() {
   const [dashboardItems, setDashboardItems] = useState([]);
-
-  const handleDelete = (index) => {
-    setDashboardItems((prevItems) =>
-      prevItems.filter((item, i) => i !== index)
-    );
-  };
 
   const calculateGridSize = () => {
     const numItems = dashboardItems.length;
@@ -41,22 +33,7 @@ function DMs() {
       <Grid container spacing={2}>
         {dashboardItems.map((item, index) => (
           <Grid item key={index} xs={calculateGridSize()} sm={6} md={4} lg={3}>
-            <Draggable>
-              <Box
-                sx={{
-                  p: 2,
-                  bgcolor: "grey",
-                  mt: 2,
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <Typography>{item}</Typography>
-                <IconButton onClick={() => handleDelete(index)}>
-                  <DeleteIcon />
-                </IconButton>
-              </Box>
-            </Draggable>
+
           </Grid>
         ))}
         <Grid item xs={12} sm={6} md={4} lg={3}>

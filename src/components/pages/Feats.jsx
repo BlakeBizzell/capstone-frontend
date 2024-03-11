@@ -1,4 +1,4 @@
-function Profile() {
+function Feats() {
     return (
       <div>
         <h1>This is the Feats Page</h1>
@@ -6,5 +6,5 @@ function Profile() {
     );
   }
   
-  export default Profile;
+  export default Feats;
   

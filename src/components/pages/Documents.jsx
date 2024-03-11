@@ -1,4 +1,4 @@
-function Profile() {
+function Documents() {
     return (
       <div>
         <h1>This is the Documents page</h1>
@@ -6,5 +6,5 @@ function Profile() {
     );
   }
   
-  export default Profile;
+  export default Documents;
   

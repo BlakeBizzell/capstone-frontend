@@ -2,7 +2,8 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
-import { Typography } from "@mui/material";
+import { Typography, MenuItem } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 150;
 
@@ -14,8 +15,12 @@ export default function SideDrawer() {
     console.log("Clicked item:", text);
   };
 
+  const handleCloseNavMenu = () => {
+    // Close the navigation menu if needed
+  };
+
   return (
-    <Box sx={{ display: "flex", zIndex:-2 }}>
+    <Box sx={{ display: "flex", zIndex: -2 }}>
       <Drawer
         variant="permanent"
         sx={{
@@ -28,7 +33,7 @@ export default function SideDrawer() {
         }}
       >
         <Toolbar />
-        <Box sx={{ overflow: "auto", zindex:-2}}>
+        <Box sx={{ overflow: "auto", zIndex: -2 }}>
           {[
             "Spells",
             "Spell List",
@@ -45,17 +50,23 @@ export default function SideDrawer() {
             "Weapons",
             "Armor"
           ].map((text, index) => (
-            <Box
+            <MenuItem
               key={text}
-              onClick={() => handleButtonClick(text)}
+              onClick={() => {
+                handleButtonClick(text);
+                handleCloseNavMenu();
+              }}
+              component={Link}
+              to={`/${text.toLowerCase().replace(/\s+/g, "-")}`}
               sx={{
-                p: 2,
-                cursor: "pointer",
-                backgroundColor: selectedItem === text ? "lightgrey" : "inherit", 
+                backgroundColor: selectedItem === text ? "lightgrey" : "inherit",
+                "&:hover": {
+                  backgroundColor: "lightgrey",
+                },
               }}
             >
               <Typography>{text}</Typography>
-            </Box>
+            </MenuItem>
           ))}
         </Box>
       </Drawer>

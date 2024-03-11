@@ -1,4 +1,4 @@
-function Profile() {
+function MagicItems() {
     return (
       <div>
         <h1>This is the Magic Item</h1>
@@ -6,5 +6,5 @@ function Profile() {
     );
   }
   
-  export default Profile;
+  export default MagicItems;
   
