@@ -35,7 +35,6 @@ export default function SideDrawer() {
         <Toolbar />
         <Box sx={{ overflow: "auto", zIndex: -2 }}>
           {[
-            "Spells",
             "Spell List",
             "Monsters",
             "Documents",

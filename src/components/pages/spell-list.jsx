@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 
 function SpellList() {
   const [spellData, setSpellData] = useState([]);
   const [page, setPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +27,19 @@ function SpellList() {
     setPage(page + 1);
   };
 
+  const handleSearch = async (event) => {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
+    try {
+      const response = await axios.get(
+        `https://api.open5e.com/spells?search=${query}`
+      );
+      setSpellData(response.data.results);
+    } catch (error) {
+      console.error("Error searching spells:", error);
+    }
+  };
+
   return (
     <div
       style={{
@@ -35,7 +49,14 @@ function SpellList() {
         flexDirection: "column",
       }}
     >
-      <h1 style={{ textAlign: "center" }}>Spell List </h1>
+      <h1 style={{ textAlign: "center" }}>Spell List</h1>
+      <TextField
+        label="Search Spells"
+        variant="outlined"
+        value={searchQuery}
+        onChange={handleSearch}
+        style={{ marginBottom: "16px", width: "50%", alignSelf: "center" }}
+      />
       <table
         style={{
           width: "100%",
@@ -47,13 +68,9 @@ function SpellList() {
         <thead>
           <tr>
             <th style={{ border: "1px solid black", padding: "8px" }}>Name</th>
-            <th style={{ border: "1px solid black", padding: "8px" }}>
-              School
-            </th>
+            <th style={{ border: "1px solid black", padding: "8px" }}>School</th>
             <th style={{ border: "1px solid black", padding: "8px" }}>Level</th>
-            <th style={{ border: "1px solid black", padding: "8px" }}>
-              Components
-            </th>
+            <th style={{ border: "1px solid black", padding: "8px" }}>Components</th>
             <th style={{ border: "1px solid black", padding: "8px" }}>Class</th>
           </tr>
         </thead>
@@ -62,9 +79,7 @@ function SpellList() {
             <tr key={index}>
               <td style={{ border: "1px solid black", padding: "8px" }}>
                 <Link
-                  to={`/spells/${spell.name
-                    .toLowerCase()
-                    .replace(/\s+/g, "-")}`}
+                  to={`/spells/${spell.name.toLowerCase().replace(/\s+/g, "-")}`}
                 >
                   {spell.name}
                 </Link>

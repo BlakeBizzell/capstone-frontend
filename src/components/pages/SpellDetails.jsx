@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
 
 function SpellDetails() {
   const { spellName } = useParams();
@@ -11,6 +10,7 @@ function SpellDetails() {
   useEffect(() => {
     const fetchSpellDetails = async () => {
       try {
+        // Replace the API URL with the correct source for spell data
         const response = await axios.get(
           `https://api.open5e.com/spells/${spellName}`
         );
@@ -33,6 +33,10 @@ function SpellDetails() {
     <div>
       <h1>{spellDetails.name}</h1>
       <p>
+        <strong>School:</strong> {spellDetails.school} |{" "}
+        <strong>Classes:</strong> {spellDetails.dnd_class} |{" "}
+      </p>
+      <p>
         <strong>Range:</strong> {spellDetails.range}
       </p>
       <p>
@@ -46,6 +50,9 @@ function SpellDetails() {
       </p>
       <p>
         <strong>Description:</strong> {spellDetails.desc}
+      </p>
+      <p>
+        <strong>At Higher Levels:</strong> {spellDetails.higher_level}
       </p>
 
       <Button

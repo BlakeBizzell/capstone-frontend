@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Container, Grid, Typography } from "@mui/material";
 import SideDrawer from "./SideDrawer";
 import Dice from "./dashboard/Dice";
-import Monsters from "./dashboard/Mosters";
+import Monsters from "./dashboard/monsterGen";
 import RandomNameGenerator from "./dashboard/Name";
 import GoldPiece from "./dashboard/Shop";
 import InitiativeTracker from "./dashboard/Initiative";
