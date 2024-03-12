@@ -16,7 +16,7 @@ import Background from "./components/pages/Backgrounds";
 import ClassesList from "./components/pages/Classes";
 import MonsterList from "./components/pages/Monsters";
 import Conditions from "./components/pages/Conditions";
-import Documents from "./components/pages/Documents";
+import Resources from "./components/pages/Resources";
 import MagicItems from "./components/pages/magic-Items";
 import Weapons from "./components/pages/weapons";
 import Races from "./components/pages/Races";
@@ -24,6 +24,8 @@ import Feats from "./components/pages/Feats";
 import SpellDetails from "./components/pages/SpellDetails";
 import MonsterDetails from "./components/pages/MonsterDetails";
 import MagicItemDetails from "./components/pages/MagicItemDetails";
+import WeaponDetails from "./components/pages/weaponDetails";
+import ArmorDetails from "./components/pages/armorDetails";
 
 function App() {
   return (
@@ -52,14 +54,19 @@ function App() {
           <Route path="/Classes" element={<ClassesList />} />
           <Route path="/Monsters" element={<MonsterList />} />
           <Route path="/Conditions" element={<Conditions />} />
-          <Route path="/Documents" element={<Documents />} />
+          <Route path="/Resources" element={<Resources />} />
           <Route path="/magic-Items" element={<MagicItems />} />
           <Route path="/weapons" element={<Weapons />} />
           <Route path="/Races" element={<Races />} />
           <Route path="/Feats" element={<Feats />} />
           <Route path="/spells/:spellName" element={<SpellDetails />} />
           <Route path="/monsters/:monsterName" element={<MonsterDetails />} />
-          <Route path="/magicitems/:magicItemSlug" element={<MagicItemDetails />} />
+          <Route
+            path="/magicitems/:magicItemSlug"
+            element={<MagicItemDetails />}
+          />
+          <Route path="/weapons/:weaponSlug" element={<WeaponDetails />} />
+          <Route path="/Armor/:armorSlug" element={<ArmorDetails />} />
         </Routes>
       </div>
     </>

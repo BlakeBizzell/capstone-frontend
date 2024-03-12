@@ -1,4 +1,4 @@
-function Documents() {
+function Resources() {
     return (
       <div>
         <h1>This is the Documents page</h1>
@@ -6,5 +6,5 @@ function Documents() {
     );
   }
   
-  export default Documents;
+  export default Resources;
   
