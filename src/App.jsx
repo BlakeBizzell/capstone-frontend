@@ -16,7 +16,7 @@ import Background from "./components/pages/Backgrounds";
 import ClassesList from "./components/pages/Classes";
 import MonsterList from "./components/pages/Monsters";
 import Conditions from "./components/pages/Conditions";
-import Resources from "./components/pages/Resources";
+import Documents from "./components/pages/Resources";
 import MagicItems from "./components/pages/magic-Items";
 import Weapons from "./components/pages/weapons";
 import Races from "./components/pages/Races";
@@ -26,6 +26,7 @@ import MonsterDetails from "./components/pages/MonsterDetails";
 import MagicItemDetails from "./components/pages/MagicItemDetails";
 import WeaponDetails from "./components/pages/weaponDetails";
 import ArmorDetails from "./components/pages/armorDetails";
+import Sections from "./components/pages/Sections";
 
 function App() {
   return (
@@ -54,11 +55,12 @@ function App() {
           <Route path="/Classes" element={<ClassesList />} />
           <Route path="/Monsters" element={<MonsterList />} />
           <Route path="/Conditions" element={<Conditions />} />
-          <Route path="/Resources" element={<Resources />} />
+          <Route path="/Resources" element={<Documents />} />
           <Route path="/magic-Items" element={<MagicItems />} />
           <Route path="/weapons" element={<Weapons />} />
           <Route path="/Races" element={<Races />} />
           <Route path="/Feats" element={<Feats />} />
+          <Route path="/Sections" element={<Sections />} />
           <Route path="/spells/:spellName" element={<SpellDetails />} />
           <Route path="/monsters/:monsterName" element={<MonsterDetails />} />
           <Route

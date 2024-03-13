@@ -37,9 +37,8 @@ export default function SideDrawer() {
           {[
             "Spell List",
             "Monsters",
-            "Documents",
+            "Resources",
             "Backgrounds",
-            "Planes",
             "Sections",
             "Feats",
             "Conditions",
@@ -47,8 +46,8 @@ export default function SideDrawer() {
             "Classes",
             "Magic Items",
             "Weapons",
-            "Armor"
-          ].map((text, index) => (
+            "Armor",
+          ].map((text) => (
             <MenuItem
               key={text}
               onClick={() => {
@@ -58,7 +57,8 @@ export default function SideDrawer() {
               component={Link}
               to={`/${text.toLowerCase().replace(/\s+/g, "-")}`}
               sx={{
-                backgroundColor: selectedItem === text ? "lightgrey" : "inherit",
+                backgroundColor:
+                  selectedItem === text ? "lightgrey" : "inherit",
                 "&:hover": {
                   backgroundColor: "lightgrey",
                 },
