@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Container, Grid, Typography, Button } from "@mui/material";
+import {
+  Container,
+  Grid,
+  Typography,
+  Fab,
+  Dialog,
+  DialogContent,
+  Switch,
+  Box,
+} from "@mui/material";
 import SideDrawer from "./SideDrawer";
 import Dice from "./dashboard/Dice";
 import Monsters from "./dashboard/monsterGen";
@@ -12,11 +21,30 @@ import CasinoIcon from "@mui/icons-material/Casino";
 
 function DMs() {
   const [dashboardItems, setDashboardItems] = useState([]);
+  const [openPopup, setOpenPopup] = useState(false);
+  const [zoomStates, setZoomStates] = useState({
+    Monsters: false,
+    Names: false,
+    "Random Store": false,
+    "Player Table": false,
+    "Initiative Tracker": false,
+    Treasure: false,
+  });
 
-  const calculateGridSize = () => {
-    const numItems = dashboardItems.length;
-    if (numItems === 0) return 12; // Fallback to full width if no items
-    return Math.min(12 / numItems, 4); // Each item takes at most 4 grid columns
+  const toggleZoomState = (itemName) => {
+    setZoomStates((prevState) => ({
+      ...prevState,
+      [itemName]: !prevState[itemName],
+    }));
+
+    // Update dashboard items when toggling zoom state
+    setDashboardItems((prevItems) => {
+      if (prevItems.includes(itemName)) {
+        return prevItems.filter((item) => item !== itemName);
+      } else {
+        return [...prevItems, itemName];
+      }
+    });
   };
 
   return (
@@ -31,58 +59,71 @@ function DMs() {
         sx={{ zIndex: -2 }}
       />
 
+      <Box sx={{ marginBottom: 2, border: "1px solid black", padding: "10px" }}>
+        <Grid container spacing={2}>
+          {Object.keys(zoomStates).map((item, index) => (
+            <Grid item key={index} xs={6} md={4} lg={3}>
+              <Grid container alignItems="center" spacing={1}>
+                <Grid item>
+                  <Typography variant="subtitle1">
+                    {item === "Gold" ? "Random Store" : item}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Switch
+                    checked={zoomStates[item]}
+                    onChange={() => toggleZoomState(item)}
+                    color="primary"
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+
       <Grid container spacing={2}>
-        {dashboardItems.map((item, index) => (
+        {Object.keys(zoomStates).map((item, index) => (
           <Grid
             item
             key={index}
-            xs={calculateGridSize()}
-            sm={6}
-            md={4}
-            lg={3}
-          ></Grid>
+            lg={zoomStates[item] && item === "Player Table" ? 12 : true}
+            // If the Player Table is turned on, it will take up the full grid length
+          >
+            {item === "Monsters" && zoomStates.Monsters && <Monsters />}
+            {item === "Names" && zoomStates.Names && <RandomNameGenerator />}
+            {item === "Random Store" && zoomStates["Random Store"] && (
+              <GoldPiece />
+            )}
+            {item === "Player Table" && zoomStates["Player Table"] && (
+              <PlayerTable />
+            )}
+            {item === "Initiative Tracker" &&
+              zoomStates["Initiative Tracker"] && <InitiativeTracker />}
+            {item === "Treasure" && zoomStates.Treasure && (
+              <TreasureGenerator />
+            )}
+          </Grid>
         ))}
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Dice />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Monsters />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <RandomNameGenerator />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <GoldPiece />
-        </Grid>
       </Grid>
-      <Grid item xs={12} sm={6} md={4} lg={3}>
-        <PlayerTable />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4} lg={3}>
-        <InitiativeTracker />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4} lg={3}>
-        <TreasureGenerator />
-      </Grid>
-      <Button
-        variant="contained"
+
+      <Fab
         style={{
           position: "fixed",
-          bottom: "20px",
+          bottom: "100px",
           right: "200px",
           backgroundColor: "rgba(255, 255, 255, 0.7)",
-          borderRadius: "50%",
-          width: "100px",
-          height: "100px",
+          width: "75px",
+          height: "75px",
         }}
-        onClick={() => {
-          // Add your click handler logic here
-        }}
+        onClick={() => setOpenPopup(true)}
       >
-        <CasinoIcon
-          style={{ height: "100px", width: "100px", color: "black" }}
-        />
-      </Button>
+        <CasinoIcon style={{ color: "black" }} />
+      </Fab>
+      <Dialog open={openPopup} onClose={() => setOpenPopup(false)}>
+        <DialogContent style={{ width: "100% ", height: "100%" }} />
+        {<Dice />}
+      </Dialog>
     </Container>
   );
 }
