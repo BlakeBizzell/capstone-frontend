@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography, Button } from "@mui/material";
 import SideDrawer from "./SideDrawer";
 import Dice from "./dashboard/Dice";
 import Monsters from "./dashboard/monsterGen";
@@ -8,6 +8,7 @@ import GoldPiece from "./dashboard/Shop";
 import InitiativeTracker from "./dashboard/Initiative";
 import PlayerTable from "./dashboard/playersInfo";
 import TreasureGenerator from "./dashboard/Treasure";
+import CasinoIcon from "@mui/icons-material/Casino";
 
 function DMs() {
   const [dashboardItems, setDashboardItems] = useState([]);
@@ -24,17 +25,22 @@ function DMs() {
         DMs Dashboard
       </Typography>
 
-       <SideDrawer
+      <SideDrawer
         dashboardItems={dashboardItems}
         setDashboardItems={setDashboardItems}
-        sx={{zIndex: -2 }}
-      /> 
-      
+        sx={{ zIndex: -2 }}
+      />
+
       <Grid container spacing={2}>
         {dashboardItems.map((item, index) => (
-          <Grid item key={index} xs={calculateGridSize()} sm={6} md={4} lg={3}>
-
-          </Grid>
+          <Grid
+            item
+            key={index}
+            xs={calculateGridSize()}
+            sm={6}
+            md={4}
+            lg={3}
+          ></Grid>
         ))}
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <Dice />
@@ -50,14 +56,33 @@ function DMs() {
         </Grid>
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-          <PlayerTable />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <InitiativeTracker />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <TreasureGenerator />
-        </Grid>
+        <PlayerTable />
+      </Grid>
+      <Grid item xs={12} sm={6} md={4} lg={3}>
+        <InitiativeTracker />
+      </Grid>
+      <Grid item xs={12} sm={6} md={4} lg={3}>
+        <TreasureGenerator />
+      </Grid>
+      <Button
+        variant="contained"
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          right: "200px",
+          backgroundColor: "rgba(255, 255, 255, 0.7)",
+          borderRadius: "50%",
+          width: "100px",
+          height: "100px",
+        }}
+        onClick={() => {
+          // Add your click handler logic here
+        }}
+      >
+        <CasinoIcon
+          style={{ height: "100px", width: "100px", color: "black" }}
+        />
+      </Button>
     </Container>
   );
 }
