@@ -56,7 +56,7 @@ function MagicItemDetails() {
         color="primary"
         style={{ marginTop: "20px" }}
       >
-        Back to Magic Items.
+        Back to Magic Items 
       </Button>
     </div>
   );
