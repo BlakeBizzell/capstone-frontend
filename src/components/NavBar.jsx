@@ -19,7 +19,7 @@ import { useLogOutUserMutation } from "../api/capstoneApi";
 import { useSelector } from "react-redux";
 
 const pages = ["Dashboard"];
-const settings = ["Profile", "Account", "Logout", "Donate"];
+const settings = ["Account", "Logout", "Donate", "Suggestions"];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -27,8 +27,8 @@ function NavBar() {
   const [logOutUser] = useLogOutUserMutation();
   const userId = localStorage.getItem("userId");
 
-  const userData = useSelector((state) => state.user); // Access user data from Redux store
-  const { username } = userData; // Assuming 'username' is the property containing the user's username
+  const userData = useSelector((state) => state.user);
+  const { username } = userData; 
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -204,8 +204,8 @@ function NavBar() {
                     to={
                       setting === "Account"
                         ? "/myAccount"
-                        : setting === "Profile"
-                        ? "/profile"
+                        : setting === "Suggestions"
+                        ? "/Suggestions"
                         : setting === "Donate"
                         ? "/Donate"
                         : ""

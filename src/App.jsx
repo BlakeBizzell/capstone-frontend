@@ -9,7 +9,7 @@ import DMs from "./components/Dashboard";
 import Store from "./components/Donate";
 import AccountInfo from "./components/accounttabs/myAccount";
 import UpdateUserInfo from "./components/accounttabs/updateUserInfo";
-import Profile from "./components/accounttabs/profile";
+import Suggestions from "./components/accounttabs/Suggestions";
 import SpellList from "./components/pages/spell-list";
 import Armor from "./components/pages/Armor";
 import Background from "./components/pages/Backgrounds";
@@ -47,7 +47,7 @@ function App() {
           <Route path="/Dashboard" element={<DMs />} />
           <Route path="/Donate" element={<Store />} />
           <Route path="/myAccount" element={<AccountInfo />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/Suggestions" element={<Suggestions />} />
           <Route path="/updateUserInfo" element={<UpdateUserInfo />} />
           <Route path="/spell-list" element={<SpellList />} />
           <Route path="/Armor" element={<Armor />} />
