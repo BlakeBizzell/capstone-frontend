@@ -20,7 +20,7 @@ export default function SideDrawer() {
   };
 
   return (
-    <Box sx={{ display: "flex", zIndex: -2 }}>
+    <Box sx={{ display: "flex", zIndex: -999 }}>
       <Drawer
         variant="permanent"
         sx={{
@@ -32,8 +32,8 @@ export default function SideDrawer() {
           },
         }}
       >
-        <Toolbar />
-        <Box sx={{ overflow: "auto", zIndex: -2 }}>
+        <Toolbar  />
+        <Box sx={{ overflow: "auto", zIndex: -999 }}>
           {[
             "Spell List",
             "Monsters",

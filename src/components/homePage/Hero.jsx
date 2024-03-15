@@ -70,18 +70,17 @@ export default function Hero() {
               variant="contained"
               color="primary"
               component={Link}
-              to="/DM"
+              to="/Sign-Up"
             >
               Start now
             </Button>
-            
           </Stack>
           <Typography
             variant="caption"
             textAlign="center"
             sx={{ opacity: 0.8 }}
           >
-            Click &quot;Start now&quot; to begin your adventure
+            Click &quot;Start now&quot; to create a free account and begin your adventure
           </Typography>
         </Stack>
         <Box
