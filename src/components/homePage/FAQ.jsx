@@ -4,7 +4,6 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -60,35 +59,7 @@ export default function FAQ() {
               gutterBottom
               sx={{ maxWidth: { sm: "100%", md: "70%" } }}
             >
-              You can reach our customer support team by emailing
-              <Link> support@email.com </Link>
-              We&apos;re here to assist you promptly.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded === "panel2"}
-          onChange={handleChange("panel2")}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2d-content"
-            id="panel2d-header"
-          >
-            <Typography component="h3" variant="subtitle2">
-              What features does the DM application offer
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: "100%", md: "70%" } }}
-            >
-              The DM application offers a range of features including prebuilt
-              dashboards, result saving, custom dashboard creation, player
-              tracking, and more, tailored to enhance your Dungeons & Dragons
-              experience.
+              Please feel free to leave any suggestions or requests within the designated suggestion tab. We prioritize addressing all concerns in a timely manner to ensure your satisfaction.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -111,8 +82,8 @@ export default function FAQ() {
               gutterBottom
               sx={{ maxWidth: { sm: "100%", md: "70%" } }}
             >
-              The DM application offers a range of features including prebuilt
-              dashboards, result saving, custom dashboard creation, player
+              The DM application offers a range of features including custom
+              dashboards, result saving, player
               tracking, and more, tailored to enhance your Dungeons & Dragons
               experience.
             </Typography>
