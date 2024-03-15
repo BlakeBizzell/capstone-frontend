@@ -18,6 +18,8 @@ import InitiativeTracker from "./dashboard/Initiative";
 import PlayerTable from "./dashboard/playersInfo";
 import TreasureGenerator from "./dashboard/Treasure";
 import CasinoIcon from "@mui/icons-material/Casino";
+import Stopwatch from "./dashboard/Timer";
+import HitPointTracker from "./dashboard/hitPointTracker";
 
 function DMs() {
   const [dashboardItems, setDashboardItems] = useState([]);
@@ -26,9 +28,11 @@ function DMs() {
     Monsters: false,
     Names: false,
     "Random Store": false,
-    "Player Table": false,
-    "Initiative Tracker": false,
+    "Player Table": true,
+    "Initiative Tracker": true,
     Treasure: false,
+    Timer: false,
+    "Hit Point Tracker": false,
   });
 
   const toggleZoomState = (itemName) => {
@@ -37,7 +41,6 @@ function DMs() {
       [itemName]: !prevState[itemName],
     }));
 
-    // Update dashboard items when toggling zoom state
     setDashboardItems((prevItems) => {
       if (prevItems.includes(itemName)) {
         return prevItems.filter((item) => item !== itemName);
@@ -49,7 +52,7 @@ function DMs() {
 
   return (
     <Container>
-      <Typography variant="h3" gutterBottom>
+      <Typography variant="h3" gutterBottom sx={{ ml: "30%" }}>
         DMs Dashboard
       </Typography>
 
@@ -70,11 +73,19 @@ function DMs() {
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Switch
-                    checked={zoomStates[item]}
-                    onChange={() => toggleZoomState(item)}
-                    color="primary"
-                  />
+                  {item === "Timer" ? (
+                    <Switch
+                      checked={zoomStates[item]}
+                      onChange={() => toggleZoomState(item)}
+                      color="primary"
+                    />
+                  ) : (
+                    <Switch
+                      checked={zoomStates[item]}
+                      onChange={() => toggleZoomState(item)}
+                      color="primary"
+                    />
+                  )}
                 </Grid>
               </Grid>
             </Grid>
@@ -87,8 +98,7 @@ function DMs() {
           <Grid
             item
             key={index}
-            lg={zoomStates[item] && item === "Player Table" ? 12 : true}
-            // If the Player Table is turned on, it will take up the full grid length
+            lg={zoomStates[item] && item === "Player Table"  ? 12 : true}
           >
             {item === "Monsters" && zoomStates.Monsters && <Monsters />}
             {item === "Names" && zoomStates.Names && <RandomNameGenerator />}
@@ -103,6 +113,9 @@ function DMs() {
             {item === "Treasure" && zoomStates.Treasure && (
               <TreasureGenerator />
             )}
+            {item === "Timer" && zoomStates.Timer && <Stopwatch />}
+            {item === "Hit Point Tracker" &&
+              zoomStates["Hit Point Tracker"] && <HitPointTracker />}
           </Grid>
         ))}
       </Grid>
