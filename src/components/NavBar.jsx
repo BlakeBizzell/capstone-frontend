@@ -16,6 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import { Link } from "react-router-dom";
 import { useLogOutUserMutation } from "../api/capstoneApi";
+import { useSelector } from "react-redux";
 
 const pages = ["Dashboard"];
 const settings = ["Profile", "Account", "Logout", "Donate"];
@@ -25,6 +26,9 @@ function NavBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [logOutUser] = useLogOutUserMutation();
   const userId = localStorage.getItem("userId");
+
+  const userData = useSelector((state) => state.user); // Access user data from Redux store
+  const { username } = userData; // Assuming 'username' is the property containing the user's username
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -49,6 +53,11 @@ function NavBar() {
     } catch (error) {
       console.log("error logging out:", error);
     }
+  };
+
+  const getFirstLetter = (name) => {
+    if (!name) return "";
+    return name.charAt(0).toUpperCase();
   };
 
   return (
@@ -164,7 +173,7 @@ function NavBar() {
             {userId && (
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt="User Avatar">{getFirstLetter(username)}</Avatar>
                 </IconButton>
               </Tooltip>
             )}
