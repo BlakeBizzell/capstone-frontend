@@ -22,11 +22,11 @@ function Dice() {
   };
 
   return (
-    <Box sx={{ bgcolor: "lightblue", p: 3, }}>
+    <Box sx={{ bgcolor: "lightblue", p: 3 }}>
       <Typography variant="h5" gutterBottom>
         Random Dice Generator
       </Typography>
-      <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
+      <Box sx={{ display: "flex", alignItems: "center", mb: 3, marginBottom: "20px", marginLeft: "20px" }}>
         <TextField
           label="Number of Dice"
           type="number"

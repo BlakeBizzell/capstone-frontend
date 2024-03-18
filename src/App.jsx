@@ -28,6 +28,8 @@ import WeaponDetails from "./components/pages/weaponDetails";
 import ArmorDetails from "./components/pages/armorDetails";
 import Sections from "./components/pages/Sections";
 import BackgroundsDetails from "./components/pages/BackgroundsDetails";
+import RacesDetails from "./components/pages/RacesDetails";
+import ClassesDetails from "./components/pages/ClassesDetails";
 
 function App() {
   return (
@@ -70,7 +72,12 @@ function App() {
           />
           <Route path="/weapons/:weaponSlug" element={<WeaponDetails />} />
           <Route path="/Armor/:armorSlug" element={<ArmorDetails />} />
-          <Route path="/Backgrounds/:BackgroundsSlug" element={<BackgroundsDetails />} />
+          <Route
+            path="/Backgrounds/:BackgroundsSlug"
+            element={<BackgroundsDetails />}
+          />
+          <Route path="/Races/:RacesSlug" element={<RacesDetails />} />
+          <Route path="/Classes/:ClassesSlug" element={<ClassesDetails />} />
         </Routes>
       </div>
     </>

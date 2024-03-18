@@ -49,7 +49,7 @@ const GoldPiece = () => {
 
   return (
     <Box sx={{ bgcolor: "grey", p: 3, ml: 3, borderRadius: 8, overflow: "auto", resize: "both"  }}>
-      <Typography variant="h4">Random Items for Sale</Typography>
+      <Typography variant="h4">Random Items for Sale</Typography>      <Button variant="contained">Save</Button>
       <Box>
         <Button variant="contained" onClick={() => { setSelectedShop("Blacksmith"); generateItems("Blacksmith") }}>Generate Blacksmith Items</Button>
         <Button variant="contained" onClick={() => { setSelectedShop("Magic Shop"); generateItems("Magic Shop") }}>Generate Magic Shop Items</Button>

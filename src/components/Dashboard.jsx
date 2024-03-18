@@ -18,12 +18,15 @@ import InitiativeTracker from "./dashboard/Initiative";
 import PlayerTable from "./dashboard/playersInfo";
 import TreasureGenerator from "./dashboard/Treasure";
 import CasinoIcon from "@mui/icons-material/Casino";
+import SaveIcon from "@mui/icons-material/Save"; // Import the save icon
 import Stopwatch from "./dashboard/Timer";
 import HitPointTracker from "./dashboard/hitPointTracker";
 
 function DMs() {
   const [dashboardItems, setDashboardItems] = useState([]);
   const [openPopup, setOpenPopup] = useState(false);
+  const [openSavePopup, setOpenSavePopup] = useState(false); // State for save popup
+
   const [zoomStates, setZoomStates] = useState({
     Monsters: false,
     Names: false,
@@ -134,6 +137,30 @@ function DMs() {
       >
         <CasinoIcon style={{ color: "black" }} />
       </Fab>
+      
+      {/* Save FAB */}
+      <Fab
+        style={{
+          position: "fixed",
+          bottom: "100px",
+          right: "100px",
+          backgroundColor: "rgba(255, 255, 255, 0.7)",
+          width: "75px",
+          height: "75px",
+        }}
+        onClick={() => setOpenSavePopup(true)} // Open save popup
+      >
+        <SaveIcon style={{ color: "black" }} />
+      </Fab>
+
+      {/* Save Popup */}
+      <Dialog open={openSavePopup} onClose={() => setOpenSavePopup(false)}>
+        <DialogContent style={{ width: "100% ", height: "100%" }}>
+          {/* Add your blank container content here */}
+          <Typography variant="h5">Blank Container</Typography>
+        </DialogContent>
+      </Dialog>
+
       <Dialog open={openPopup} onClose={() => setOpenPopup(false)}>
         <DialogContent style={{ width: "100% ", height: "100%" }} />
         {<Dice />}

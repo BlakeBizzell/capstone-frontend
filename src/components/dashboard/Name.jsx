@@ -65,6 +65,7 @@ const RandomNameGenerator = () => {
         >
           Generate Name
         </Button>
+        <Button variant="contained" style={{marginBottom: "1px", marginLeft: "20px"}}>Save</Button>
       </Box>
       <Box>
         <Typography variant="subtitle1">

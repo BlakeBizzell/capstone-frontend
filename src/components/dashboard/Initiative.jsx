@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Typography, Box, TextField, Button, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@mui/material';
+import SaveIcon from '@mui/icons-material/Save'; // Import the Save icon
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const InitiativeTracker = () => {
@@ -45,7 +46,10 @@ const InitiativeTracker = () => {
         />
         <Button variant="contained" onClick={addCharacter}>Add</Button>
       </Box>
-      <Button variant="contained" onClick={sortCharacters}>Sort</Button>
+      <IconButton variant="contained" onClick={sortCharacters}> {/* Replace Button with IconButton */}
+        <SaveIcon /> {/* Use Save icon */}
+      </IconButton>
+      
       <List>
         {characters.map((character, index) => (
           <ListItem key={index}>

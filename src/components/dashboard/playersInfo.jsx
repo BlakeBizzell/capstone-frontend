@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Typography, Box, Button, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, IconButton, TextField } from '@mui/material';
+import SaveIcon from '@mui/icons-material/Save'; // Import the Save icon
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const PlayerTable = () => {
@@ -25,6 +26,9 @@ const PlayerTable = () => {
   return (
     <Box sx={{ bgcolor: 'grey', p: 3, ml: 3, borderRadius: 8, overflow: "auto", resize: "both"  }}>
       <Typography variant="h4">Player Table</Typography>
+      <IconButton variant="contained"> {/* Replace Button with IconButton */}
+        <SaveIcon /> {/* Use Save icon */}
+      </IconButton>
       <TableContainer>
         <Table>
           <TableHead>
