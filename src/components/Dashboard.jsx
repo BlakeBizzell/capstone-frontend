@@ -13,7 +13,6 @@ import SideDrawer from "./SideDrawer";
 import Dice from "./dashboard/Dice";
 import Monsters from "./dashboard/monsterGen";
 import RandomNameGenerator from "./dashboard/Name";
-import GoldPiece from "./dashboard/Shop";
 import InitiativeTracker from "./dashboard/Initiative";
 import PlayerTable from "./dashboard/playersInfo";
 import TreasureGenerator from "./dashboard/Treasure";
@@ -30,7 +29,6 @@ function DMs() {
   const [zoomStates, setZoomStates] = useState({
     Monsters: false,
     Names: false,
-    "Random Store": false,
     "Player Table": true,
     "Initiative Tracker": true,
     Treasure: false,
@@ -106,9 +104,6 @@ function DMs() {
           >
             {item === "Monsters" && zoomStates.Monsters && <Monsters />}
             {item === "Names" && zoomStates.Names && <RandomNameGenerator />}
-            {item === "Random Store" && zoomStates["Random Store"] && (
-              <GoldPiece />
-            )}
             {item === "Player Table" && zoomStates["Player Table"] && (
               <PlayerTable />
             )}
@@ -148,15 +143,14 @@ function DMs() {
           width: "75px",
           height: "75px",
         }}
-        onClick={() => setOpenSavePopup(true)} // Open save popup
+        onClick={() => setOpenSavePopup(true)} 
       >
         <SaveIcon style={{ color: "black" }} />
       </Fab>
 
-      {/* Save Popup */}
+
       <Dialog open={openSavePopup} onClose={() => setOpenSavePopup(false)}>
         <DialogContent style={{ width: "100% ", height: "100%" }}>
-          {/* Add your blank container content here */}
           <Typography variant="h5">Blank Container</Typography>
         </DialogContent>
       </Dialog>
