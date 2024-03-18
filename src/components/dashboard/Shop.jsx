@@ -48,7 +48,7 @@ const GoldPiece = () => {
   };
 
   return (
-    <Box sx={{ bgcolor: "grey", p: 3, ml: 3, borderRadius: 8 }}>
+    <Box sx={{ bgcolor: "grey", p: 3, ml: 3, borderRadius: 8, overflow: "auto", resize: "both"  }}>
       <Typography variant="h4">Random Items for Sale</Typography>
       <Box>
         <Button variant="contained" onClick={() => { setSelectedShop("Blacksmith"); generateItems("Blacksmith") }}>Generate Blacksmith Items</Button>

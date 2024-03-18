@@ -68,7 +68,7 @@ function Stopwatch() {
   };
 
   return (
-    <Box sx={{ bgcolor: 'grey', p: 3, ml: 3, borderRadius: 8 }}>
+    <Box sx={{ bgcolor: 'grey', p: 3, ml: 3, borderRadius: 8, overflow: "auto", resize: "both"  }}>
       <h1>Stopwatch</h1>
       <p>{formatTime(time)}</p>
       <Button onClick={handleStart} disabled={isRunning} variant="contained">
