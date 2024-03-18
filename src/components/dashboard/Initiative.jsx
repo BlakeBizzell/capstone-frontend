@@ -27,7 +27,7 @@ const InitiativeTracker = () => {
   };
 
   return (
-    <Box sx={{ bgcolor: 'grey', p: 3, ml: 3, borderRadius: 8 }}>
+    <Box sx={{ bgcolor: 'grey', p: 3, ml: 3, borderRadius: 8, overflow: "auto", resize: "both"}}>
       <Typography variant="h4">Initiative Tracker</Typography>
       <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
         <TextField

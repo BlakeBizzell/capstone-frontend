@@ -119,7 +119,7 @@ class TreasureGenerator extends React.Component {
     return (
 
   
-          <Container sx={{ bgcolor: "grey", p: 3, ml: 3, borderRadius: 8 }}>
+          <Container sx={{ bgcolor: "grey", p: 3, ml: 3, borderRadius: 8, overflow: "auto", resize: "both"  }}>
             <Typography variant="h3" gutterBottom>
               Treasure Generator
             </Typography>

@@ -6,7 +6,7 @@ const RandomNameGenerator = () => {
   const [randomFirstName, setRandomFirstName] = useState("");
   const [randomLastName, setRandomLastName] = useState("");
 
-  const generateRandomName = (race) => {
+  const generateRandomName = () => {
     const vowels = "aeiou";
     const consonants = "bcdfghjklmnpqrstvwxyz";
 
@@ -41,7 +41,7 @@ const RandomNameGenerator = () => {
   };
 
   return (
-    <Box sx={{ bgcolor: "grey", p: 3, ml: 3, borderRadius: 8 }}>
+    <Box sx={{ bgcolor: "grey", p: 3, ml: 3, borderRadius: 8, overflow: "auto", resize: "both"  }}>
       <Typography variant="h4">Random Name Generator</Typography>
       <Box>
         <TextField

@@ -98,7 +98,8 @@ function DMs() {
           <Grid
             item
             key={index}
-            lg={zoomStates[item] && item === "Player Table"  ? 12 : true}
+
+
           >
             {item === "Monsters" && zoomStates.Monsters && <Monsters />}
             {item === "Names" && zoomStates.Names && <RandomNameGenerator />}

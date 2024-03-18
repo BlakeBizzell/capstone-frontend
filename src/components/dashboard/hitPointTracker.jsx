@@ -22,7 +22,7 @@ const HitPointTracker = () => {
   };
 
   return (
-    <Box sx={{ bgcolor: 'grey', p: 3, ml: 3, borderRadius: 8 }}>
+    <Box sx={{ bgcolor: 'grey', p: 3, ml: 3, borderRadius: 8, overflow: "auto", resize: "both" }}>
       <Typography variant="h4">Hit Point Tracker</Typography>
       <TableContainer>
         <Table>
