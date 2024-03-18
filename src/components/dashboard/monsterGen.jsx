@@ -7,14 +7,23 @@ import {
   Button,
   Box,
   TextField,
+  Slider,
+  IconButton,
+  Dialog,
+  DialogActions,
 } from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
+import SaveIcon from "@mui/icons-material/Save"; // Importing Save Icon
+import MonsterDetails from "../pages/MonsterDetails";
 
 function Monsters() {
   const [numberOfMonsters, setNumberOfMonsters] = useState(1);
-  const [crRating, setCrRating] = useState("");
+  const [crRange, setCrRange] = useState([0, 30]);
   const [monsterData, setMonsterData] = useState([]);
   const [randomMonsters, setRandomMonsters] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedMonster, setSelectedMonster] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +47,9 @@ function Monsters() {
     const selectedMonsters = [];
     for (let i = 0; i < numberOfMonsters; i++) {
       const filteredMonsters = monsterData.filter(
-        (monster) => monster.challenge_rating === crRating
+        (monster) =>
+          parseInt(monster.challenge_rating) >= crRange[0] &&
+          parseInt(monster.challenge_rating) <= crRange[1]
       );
       const randomIndex = Math.floor(Math.random() * filteredMonsters.length);
       selectedMonsters.push(filteredMonsters[randomIndex]);
@@ -46,12 +57,37 @@ function Monsters() {
     setRandomMonsters(selectedMonsters);
   };
 
+  const clearRandomMonsters = () => {
+    setRandomMonsters([]);
+  };
+
+  const handleCrRangeChange = (event, newValue) => {
+    setCrRange(newValue);
+  };
+
+  const handleInfoClick = (monster) => {
+    setSelectedMonster(monster);
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
   return (
-    <Container sx={{ bgcolor: "grey", p: 3, ml: 3, borderRadius: 8, overflow: "auto", resize: "both"  }}>
+    <Container
+      sx={{
+        bgcolor: "grey",
+        p: 3,
+        ml: 3,
+        borderRadius: 8,
+        overflow: "auto",
+        resize: "both",
+      }}
+    >
       <Typography variant="h3" gutterBottom>
         Monsters Dashboard
       </Typography>
-
       <Typography variant="h5" gutterBottom>
         Random Monster Generator
       </Typography>
@@ -62,19 +98,33 @@ function Monsters() {
         onChange={(e) => setNumberOfMonsters(parseInt(e.target.value))}
         sx={{ mr: 2 }}
       />
-      <TextField
-        label="CR Rating"
-        value={crRating}
-        onChange={(e) => setCrRating(e.target.value)}
+      <Typography id="cr-slider" gutterBottom>
+        CR Range
+      </Typography>
+      <Slider
+        value={crRange}
+        onChange={handleCrRangeChange}
+        valueLabelDisplay="auto"
+        min={0}
+        max={30}
+        aria-labelledby="cr-slider"
         sx={{ mr: 2 }}
       />
       <Button
         variant="contained"
         onClick={getRandomMonsters}
-        disabled={isLoading || crRating === ""}
+        disabled={isLoading}
       >
         Generate Random Monsters
       </Button>
+      <Button
+        variant="contained"
+        style={{ marginBottom: "2px", marginLeft: "20px" }}
+        onClick={clearRandomMonsters}
+      >
+        Clear
+      </Button>{" "}
+      {/* Clear Button */}
       {isLoading ? (
         <CircularProgress />
       ) : (
@@ -82,15 +132,39 @@ function Monsters() {
           {randomMonsters.length > 0 && (
             <Box sx={{ mt: 2 }}>
               {randomMonsters.map((monster, index) => (
-                <Typography key={index} variant="h6" gutterBottom>
-                  {monster.name}
-                </Typography>
-                // Add more details about the random monsters
+                <Box
+                  key={index}
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <Typography variant="h6" gutterBottom>
+                    {monster.name}
+                    &nbsp;-&nbsp;CR: {
+                      monster.challenge_rating
+                    }&nbsp;-&nbsp;HP: {monster.hit_points}
+                  </Typography>
+                  <IconButton onClick={() => handleInfoClick(monster)}>
+                    <InfoIcon />
+                  </IconButton>
+                  <IconButton variant="contained">
+                    {" "}
+                    <SaveIcon />
+                  </IconButton>
+                </Box>
               ))}
             </Box>
           )}
         </>
       )}
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <MonsterDetails monsterName={selectedMonster?.slug} />
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 }

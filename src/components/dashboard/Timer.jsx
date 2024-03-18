@@ -71,13 +71,13 @@ function Stopwatch() {
     <Box sx={{ bgcolor: 'grey', p: 3, ml: 3, borderRadius: 8, overflow: "auto", resize: "both"  }}>
       <h1>Stopwatch</h1>
       <p>{formatTime(time)}</p>
-      <Button onClick={handleStart} disabled={isRunning} variant="contained">
+      <Button onClick={handleStart} disabled={isRunning} variant="contained" style={{marginBottom: "20px", marginLeft: "20px"}}>
         Start
       </Button>
-      <Button onClick={handlePause} disabled={!isRunning} variant="contained">
+      <Button onClick={handlePause} disabled={!isRunning} variant="contained" style={{marginBottom: "20px", marginLeft: "20px"}}>
         Pause
       </Button>
-      <Button onClick={handleReset} variant="contained">
+      <Button onClick={handleReset} variant="contained" style={{marginBottom: "20px", marginLeft: "20px"}}>
         Reset
       </Button>
       <br />
@@ -92,7 +92,7 @@ function Stopwatch() {
         variant="outlined"
         style={{ marginTop: '10px' }}
       />
-      <Button onClick={handleCustomTimeSubmit} variant="contained">
+      <Button onClick={handleCustomTimeSubmit} variant="contained" >
         Apply Custom Time
       </Button>
       {limit > 0 && (

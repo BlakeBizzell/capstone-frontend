@@ -80,7 +80,8 @@ export default function Hero() {
             textAlign="center"
             sx={{ opacity: 0.8 }}
           >
-            Click &quot;Start now&quot; to create a free account and begin your adventure
+            Click &quot;Start now&quot; to create a free account and begin your
+            Adventure
           </Typography>
         </Stack>
         <Box

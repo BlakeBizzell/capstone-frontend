@@ -137,6 +137,7 @@ class TreasureGenerator extends React.Component {
             >
               Clear
             </Button>
+            <Button variant="contained" style={{marginBottom: "20px", marginLeft: "20px"}} >Save</Button>
             <div style={{ marginBottom: "20px" }}>
               <TextField
                 label="Coins"
