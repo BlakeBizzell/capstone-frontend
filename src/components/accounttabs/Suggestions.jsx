@@ -5,8 +5,7 @@ import { useSaveFeedbackMutation } from "../../api/capstoneApi"; // Adjust the p
 const Suggestions = () => {
   const [feedback, setFeedback] = useState("");
   const [screenshots, setScreenshots] = useState([]);
-  const [saveFeedback, { isLoading, isError, isSuccess }] =
-    useSaveFeedbackMutation();
+  const [saveFeedback] = useSaveFeedbackMutation();
 
   const handleSubmit = async (event) => {
     event.preventDefault();

@@ -5,7 +5,7 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Home from "./components/Home";
 import DMs from "./components/Dashboard";
-import Store from "./components/Donate";
+import Store from "./components/accounttabs/Donate";
 import AccountInfo from "./components/accounttabs/myAccount";
 import UpdateUserInfo from "./components/accounttabs/updateUserInfo";
 import Suggestions from "./components/accounttabs/Suggestions";
@@ -66,7 +66,7 @@ function App() {
           <Route path="/spells/:spellName" element={<SpellDetails />} />
           <Route path="/monsters/:monsterName" element={<MonsterDetails />} />
           <Route
-            path="/magicitems/:magicItemSlug"
+            path="/magicItems/:magicItemSlug"
             element={<MagicItemDetails />}
           />
           <Route path="/weapons/:weaponSlug" element={<WeaponDetails />} />
