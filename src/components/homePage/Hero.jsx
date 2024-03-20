@@ -55,7 +55,7 @@ export default function Hero() {
             </Typography>
           </Typography>
           <Typography variant="body1" textAlign="center" color="text.secondary">
-            Explore our cutting-edge dashboard, delivering high-quality Dungeon
+            Explore our Game Master dashboard, delivering high-quality Dungeon
             Master solutions tailored to your needs. <br />
             Elevate your experience with top-tier features and services.
           </Typography>

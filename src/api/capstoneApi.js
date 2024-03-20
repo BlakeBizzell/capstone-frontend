@@ -74,6 +74,34 @@ export const capstoneApi = createApi({
     getCartItems: builder.query({
       query: (userId) => `/auth/users/${userId}/cart`,
     }),
+    savePlayerInfo: builder.mutation({
+      query: (playerData) => ({
+        url: "/auth/saves",
+        method: "POST",
+        body: playerData,
+      }),
+    }),
+    saveMonsterInfo: builder.mutation({
+      query: (monsterData) => ({
+        url: "/auth/saves/monster-saves",
+        method: "POST",
+        body: monsterData,
+      }),
+    }),
+    saveRandomName: builder.mutation({
+      query: (randomNameData) => ({
+        url: "/auth/saves/random-name-saves",
+        method: "POST",
+        body: randomNameData,
+      }),
+    }),
+    saveTreasureInfo: builder.mutation({
+      query: (treasureData) => ({
+        url: "/auth/saves/treasure-saves",
+        method: "POST",
+        body: treasureData,
+      }),
+    }),
   }),
 });
 
@@ -92,4 +120,8 @@ export const {
   useAddToCartMutation,
   useRemoveFromCartMutation,
   useGetCartItemsQuery,
+  useSavePlayerInfoMutation,
+  useSaveMonsterInfoMutation,
+  useSaveRandomNameMutation,
+  useSaveTreasureInfoMutation,
 } = capstoneApi;
