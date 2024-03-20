@@ -83,21 +83,21 @@ export const capstoneApi = createApi({
     }),
     saveMonsterInfo: builder.mutation({
       query: (monsterData) => ({
-        url: "/auth/saves/monster-saves",
+        url: "/auth/monster-saves",
         method: "POST",
         body: monsterData,
       }),
     }),
     saveRandomName: builder.mutation({
       query: (randomNameData) => ({
-        url: "/auth/saves/random-name-saves",
+        url: "/auth/random-name-saves",
         method: "POST",
         body: randomNameData,
       }),
     }),
     saveTreasureInfo: builder.mutation({
       query: (treasureData) => ({
-        url: "/auth/saves/treasure-saves",
+        url: "/auth/treasure-saves",
         method: "POST",
         body: treasureData,
       }),

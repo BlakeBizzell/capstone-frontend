@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Typography, Box, TextField, MenuItem, Button } from "@mui/material";
-import { useSaveRandomNameMutation } from "../../api/capstoneApi"; // Import the mutation hook
+import { useSaveRandomNameMutation } from "../../api/capstoneApi";
 
 const RandomNameGenerator = () => {
   const [selectedRace, setSelectedRace] = useState("Human");
@@ -23,9 +23,7 @@ const RandomNameGenerator = () => {
           Math.floor(Math.random() * consonants.length)
         );
       } else {
-        firstName += vowels.charAt(
-          Math.floor(Math.random() * vowels.length)
-        );
+        firstName += vowels.charAt(Math.floor(Math.random() * vowels.length));
       }
     }
 
@@ -38,9 +36,7 @@ const RandomNameGenerator = () => {
           Math.floor(Math.random() * consonants.length)
         );
       } else {
-        lastName += vowels.charAt(
-          Math.floor(Math.random() * vowels.length)
-        );
+        lastName += vowels.charAt(Math.floor(Math.random() * vowels.length));
       }
     }
 
@@ -49,11 +45,13 @@ const RandomNameGenerator = () => {
   };
 
   const handleSaveRandomName = () => {
+    const userId = localStorage.getItem("userId");
     // Call the mutation hook to save the random name
     saveRandomName({
       race: selectedRace,
       firstName: randomFirstName,
       lastName: randomLastName,
+      userId: userId, // Include the userId here
     })
       .unwrap() // Unwrap the response
       .then((response) => {
