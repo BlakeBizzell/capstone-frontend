@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useGetProductsQuery, useAddToCartMutation } from "../api/capstoneApi";
+import { useGetProductsQuery, useAddToCartMutation } from "../../api/capstoneApi";
 import { useSelector } from "react-redux";
 
 const Store = () => {

@@ -6,16 +6,12 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-// import { Link as RouterLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useUpdateUserMutation } from "../../api/capstoneApi";
 
 const UpdateUserInfo = () => {
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-  const handleSubmit = () => {};
-
+  const [updateUserMutation] = useUpdateUserMutation(); 
+  const [userId, setUserId] = useState("");
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -23,6 +19,29 @@ const UpdateUserInfo = () => {
     lastName: "",
     email: "",
   });
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault(); 
+    try {
+
+      await updateUserMutation({ id: userId, userData: formData });
+
+      console.log("User updated successfully");
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
