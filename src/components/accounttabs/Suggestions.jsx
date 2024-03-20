@@ -1,18 +1,31 @@
-import  { useState } from 'react';
-import { TextField, Button, Typography, Box, Paper } from '@mui/material';
+import { useState } from "react";
+import { TextField, Button, Typography, Box, Paper } from "@mui/material";
+import { useSaveFeedbackMutation } from "../../api/capstoneApi"; // Adjust the path accordingly
 
 const Suggestions = () => {
-  const [feedback, setFeedback] = useState('');
+  const [feedback, setFeedback] = useState("");
   const [screenshots, setScreenshots] = useState([]);
+  const [saveFeedback, { isLoading, isError, isSuccess }] =
+    useSaveFeedbackMutation();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log('Feedback submitted:', feedback);
-    console.log('Screenshots:', screenshots);
+    const feedbackData = {
+      feedback: feedback, // Ensure feedback field is included
+      screenshots: screenshots.map((screenshot) => screenshot.name), // Only include screenshot filenames
+    };
 
-    setFeedback('');
-    setScreenshots([]);
+    try {
+      await saveFeedback(feedbackData);
+
+      // Reset form state after successful submission
+      setFeedback("");
+      setScreenshots([]);
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+      // Handle error state if needed
+    }
   };
 
   const handleScreenshotUpload = (event) => {
@@ -26,14 +39,26 @@ const Suggestions = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-      <Paper variant="outlined" elevation={3} style={{ padding: '20px', maxWidth: '500px' }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+      }}
+    >
+      <Paper
+        variant="outlined"
+        elevation={0}
+        style={{ padding: "20px", maxWidth: "500px" }}
+      >
         <Typography variant="h5" gutterBottom>
           Feedback Form
         </Typography>
         <form onSubmit={handleSubmit}>
           <Typography variant="body1" gutterBottom>
-            Please provide your feedback in the field below. You can also optionally upload screenshots to illustrate your feedback.
+            Please provide your feedback in the field below. You can also
+            optionally upload screenshots to illustrate your feedback.
           </Typography>
           <TextField
             label="Your Feedback"
@@ -53,7 +78,7 @@ const Suggestions = () => {
               type="file"
               onChange={handleScreenshotUpload}
               multiple
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
             />
             <label htmlFor="button-file">
               <Button variant="contained" component="span">
@@ -69,7 +94,15 @@ const Suggestions = () => {
               <Typography variant="subtitle1">Screenshots:</Typography>
               {screenshots.map((screenshot, index) => (
                 <div key={index}>
-                  <img src={URL.createObjectURL(screenshot)} alt={`Screenshot ${index + 1}`} style={{ maxWidth: '200px', maxHeight: '200px', marginTop: '5px' }} />
+                  <img
+                    src={URL.createObjectURL(screenshot)}
+                    alt={`Screenshot ${index + 1}`}
+                    style={{
+                      maxWidth: "200px",
+                      maxHeight: "200px",
+                      marginTop: "5px",
+                    }}
+                  />
                 </div>
               ))}
             </Box>

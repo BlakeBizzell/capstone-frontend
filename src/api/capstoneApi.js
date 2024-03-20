@@ -102,6 +102,13 @@ export const capstoneApi = createApi({
         body: treasureData,
       }),
     }),
+    saveFeedback: builder.mutation({
+      query: (feedbackData) => ({
+        url: "/auth/feedback", 
+        method: "POST",
+        body: feedbackData,
+      }),
+    }),
   }),
 });
 
@@ -124,4 +131,5 @@ export const {
   useSaveMonsterInfoMutation,
   useSaveRandomNameMutation,
   useSaveTreasureInfoMutation,
+  useSaveFeedbackMutation
 } = capstoneApi;
