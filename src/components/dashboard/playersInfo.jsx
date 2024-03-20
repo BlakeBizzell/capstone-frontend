@@ -12,8 +12,9 @@ import {
   IconButton,
   TextField,
 } from "@mui/material";
-import SaveIcon from "@mui/icons-material/Save"; // Import the Save icon
+import SaveIcon from "@mui/icons-material/Save";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useSavePlayerInfoMutation } from "../../api/capstoneApi";
 
 const PlayerTable = () => {
   const [players, setPlayers] = useState([]);
@@ -58,6 +59,33 @@ const PlayerTable = () => {
     setPlayers(updatedPlayers);
   };
 
+  const [savePlayerInfo] = useSavePlayerInfoMutation();
+
+  const savePlayer = async (player) => {
+    try {
+      // Retrieve user ID from local storage
+      const userId = Number(localStorage.getItem("userId"), 10);
+
+      // If userId is not available in local storage, handle the case appropriately
+      if (!userId) {
+        console.error("User ID not found in local storage.");
+        // Handle the case where user ID is not available
+        return;
+      }
+
+      // Add userId to player object before saving
+      const playerDataWithUserId = { ...player, userId };
+
+      // Call savePlayerInfo mutation with player data
+      await savePlayerInfo(playerDataWithUserId);
+
+      // Optionally, you can handle success or display a message here
+    } catch (error) {
+      console.error("Error saving player information:", error);
+      // Optionally, you can handle the error or display an error message here
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -79,7 +107,7 @@ const PlayerTable = () => {
               <TableCell>Class</TableCell>
               <TableCell>Level</TableCell>
               <TableCell>AC</TableCell>
-              <TableCell>Status</TableCell>
+              <TableCell>Weaknesses</TableCell>
               <TableCell>Goals</TableCell>
               <TableCell>Player Sheet Link</TableCell>
               <TableCell>Action</TableCell>
@@ -156,7 +184,7 @@ const PlayerTable = () => {
                   <IconButton onClick={() => deletePlayer(index)}>
                     <DeleteIcon />
                   </IconButton>
-                  <IconButton>
+                  <IconButton onClick={() => savePlayer(player)}>
                     <SaveIcon />
                   </IconButton>
                 </TableCell>

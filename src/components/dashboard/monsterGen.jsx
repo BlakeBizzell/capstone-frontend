@@ -15,6 +15,7 @@ import {
 import InfoIcon from "@mui/icons-material/Info";
 import SaveIcon from "@mui/icons-material/Save"; // Importing Save Icon
 import MonsterDetails from "../pages/MonsterDetails";
+import { useSaveMonsterInfoMutation } from "../../api/capstoneApi"; // Importing saveMonsterInfo mutation hook
 
 function Monsters() {
   const [numberOfMonsters, setNumberOfMonsters] = useState(1);
@@ -70,8 +71,33 @@ function Monsters() {
     setOpenDialog(true);
   };
 
-  const handleCloseDialog = () => {
-    setOpenDialog(false);
+  // Mutation hook for saving monster info
+  const [saveMonsterInfo] = useSaveMonsterInfoMutation();
+
+  // Function to handle saving monster info
+  const handleSaveMonster = async (monster) => {
+    try {
+      // Retrieve user ID from local storage
+      const userId = Number(localStorage.getItem("userId"), 10);
+
+      // If userId is not available in local storage, handle the case appropriately
+      if (!userId) {
+        console.error("User ID not found in local storage.");
+        // Handle the case where user ID is not available
+        return;
+      }
+
+      // Add userId to monster object before saving
+      const monsterDataWithUserId = { ...monster, userId };
+
+      // Call saveMonsterInfo mutation with monster data
+      await saveMonsterInfo(monsterDataWithUserId);
+
+      // Optionally, you can handle success or display a message here
+    } catch (error) {
+      console.error("Error saving monster information:", error);
+      // Optionally, you can handle the error or display an error message here
+    }
   };
 
   return (
@@ -124,7 +150,6 @@ function Monsters() {
       >
         Clear
       </Button>{" "}
-      {/* Clear Button */}
       {isLoading ? (
         <CircularProgress />
       ) : (
@@ -147,8 +172,7 @@ function Monsters() {
                   <IconButton onClick={() => handleInfoClick(monster)}>
                     <InfoIcon />
                   </IconButton>
-                  <IconButton variant="contained">
-                    {" "}
+                  <IconButton onClick={() => handleSaveMonster(monster)}>
                     <SaveIcon />
                   </IconButton>
                 </Box>
@@ -157,10 +181,10 @@ function Monsters() {
           )}
         </>
       )}
-      <Dialog open={openDialog} onClose={handleCloseDialog}>
+      <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
         <MonsterDetails monsterName={selectedMonster?.slug} />
         <DialogActions>
-          <Button onClick={handleCloseDialog} color="primary">
+          <Button onClick={() => setOpenDialog(false)} color="primary">
             Close
           </Button>
         </DialogActions>

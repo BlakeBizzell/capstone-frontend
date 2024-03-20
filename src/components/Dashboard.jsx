@@ -24,7 +24,7 @@ import HitPointTracker from "./dashboard/hitPointTracker";
 function DMs() {
   const [dashboardItems, setDashboardItems] = useState([]);
   const [openPopup, setOpenPopup] = useState(false);
-  const [openSavePopup, setOpenSavePopup] = useState(false); // State for save popup
+  const [openSavePopup, setOpenSavePopup] = useState(false); 
 
   const [zoomStates, setZoomStates] = useState({
     Monsters: false,
