@@ -14,7 +14,6 @@ import {
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import SaveIcon from "@mui/icons-material/Save";
-import MonsterDetails from "../pages/MonsterDetails";
 import { useSaveMonsterInfoMutation } from "../../api/capstoneApi";
 
 function Monsters() {
@@ -25,6 +24,7 @@ function Monsters() {
   const [isLoading, setIsLoading] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedMonster, setSelectedMonster] = useState(null);
+  const [monsterDetails, setMonsterDetails] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,16 +66,27 @@ function Monsters() {
     setCrRange(newValue);
   };
 
-  const handleInfoClick = (monster) => {
+  const handleInfoClick = async (monster) => {
+    console.log(monster.name);
     setSelectedMonster(monster);
     setOpenDialog(true);
+    try {
+      const response = await axios.get(
+        `https://api.open5e.com/monsters/${encodeURIComponent(
+          monster.name.toLowerCase().replace(/\s+/g, "-")
+        )}`
+      );
+      setMonsterDetails(response.data);
+    } catch (error) {
+      console.error("Error fetching monster details:", error);
+    }
   };
 
   const [saveMonsterInfo] = useSaveMonsterInfoMutation();
 
   const handleSaveMonster = async (monster) => {
     try {
-      const userId = localStorage.getItem("userId");
+      const userId = Number(localStorage.getItem("userId"), 10);
 
       if (!userId) {
         console.error("User ID not found in local storage.");
@@ -172,7 +183,44 @@ function Monsters() {
         </>
       )}
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-        <MonsterDetails monsterName={selectedMonster?.slug} />
+        {monsterDetails ? (
+          <>
+            <Typography variant="h6">{monsterDetails.name}</Typography>
+            <Typography variant="body1">
+              <strong>Type:</strong> {monsterDetails.type}
+            </Typography>
+            <Typography variant="body1">
+              <strong>Size:</strong> {monsterDetails.size}
+            </Typography>
+            <Typography variant="body1">
+              <strong>Alignment:</strong> {monsterDetails.alignment}
+            </Typography>
+            <Typography variant="body1">
+              <strong>Armor Class:</strong> {monsterDetails.armor_class} (
+              {monsterDetails.armor_desc})
+            </Typography>
+            <Typography variant="body1">
+              <strong>Hit Points:</strong> {monsterDetails.hit_points} (
+              {monsterDetails.hit_dice})
+            </Typography>
+            <Typography variant="body1">
+              <strong>Speed:</strong>{" "}
+              {Object.entries(monsterDetails.speed).map(([type, value]) => (
+                <span key={type}>
+                  {" "}
+                  {type}: {value},
+                </span>
+              ))}
+            </Typography>
+            <Typography variant="body1">
+              <strong>Saving Throws:</strong>{" "}
+              {JSON.stringify(monsterDetails.saving_throws)}
+            </Typography>
+            {/* Include other details similarly */}
+          </>
+        ) : (
+          <CircularProgress />
+        )}
         <DialogActions>
           <Button onClick={() => setOpenDialog(false)} color="primary">
             Close
