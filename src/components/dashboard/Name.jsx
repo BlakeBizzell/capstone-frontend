@@ -7,14 +7,14 @@ const RandomNameGenerator = () => {
   const [randomFirstName, setRandomFirstName] = useState("");
   const [randomLastName, setRandomLastName] = useState("");
 
-  // Mutation hook for saving random name
+
   const [saveRandomName, { isLoading }] = useSaveRandomNameMutation();
 
   const generateRandomName = () => {
     const vowels = "aeiou";
     const consonants = "bcdfghjklmnpqrstvwxyz";
 
-    // Generate first name
+
     let firstName = "";
     const firstNameLength = Math.floor(Math.random() * 3) + 3;
     for (let i = 0; i < firstNameLength; i++) {
@@ -27,7 +27,7 @@ const RandomNameGenerator = () => {
       }
     }
 
-    // Generate last name
+
     let lastName = "";
     const lastNameLength = Math.floor(Math.random() * 8) + 3;
     for (let i = 0; i < lastNameLength; i++) {
@@ -46,21 +46,21 @@ const RandomNameGenerator = () => {
 
   const handleSaveRandomName = () => {
     const userId = localStorage.getItem("userId");
-    // Call the mutation hook to save the random name
+
     saveRandomName({
       race: selectedRace,
       firstName: randomFirstName,
       lastName: randomLastName,
-      userId: userId, // Include the userId here
+      userId: userId, 
     })
-      .unwrap() // Unwrap the response
+      .unwrap() 
       .then((response) => {
         console.log("Random name saved successfully:", response.message);
-        // Handle success
+    
       })
       .catch((error) => {
         console.error("Error saving random name:", error);
-        // Handle error
+
       });
   };
 
@@ -101,8 +101,8 @@ const RandomNameGenerator = () => {
         <Button
           variant="contained"
           style={{ marginBottom: "1px", marginLeft: "20px" }}
-          onClick={handleSaveRandomName} // Call handleSaveRandomName function onClick
-          disabled={isLoading} // Disable the button while mutation is in progress
+          onClick={handleSaveRandomName} 
+          disabled={isLoading} 
         >
           {isLoading ? "Saving..." : "Save"}
         </Button>

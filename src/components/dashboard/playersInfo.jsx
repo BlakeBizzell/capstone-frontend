@@ -63,26 +63,25 @@ const PlayerTable = () => {
 
   const savePlayer = async (player) => {
     try {
-      // Retrieve user ID from local storage
+
       const userId = Number(localStorage.getItem("userId"), 10);
 
-      // If userId is not available in local storage, handle the case appropriately
+   
       if (!userId) {
         console.error("User ID not found in local storage.");
-        // Handle the case where user ID is not available
+
         return;
       }
 
-      // Add userId to player object before saving
+
       const playerDataWithUserId = { ...player, userId };
 
-      // Call savePlayerInfo mutation with player data
       await savePlayerInfo(playerDataWithUserId);
 
-      // Optionally, you can handle success or display a message here
+
     } catch (error) {
       console.error("Error saving player information:", error);
-      // Optionally, you can handle the error or display an error message here
+
     }
   };
 

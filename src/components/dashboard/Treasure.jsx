@@ -11,6 +11,7 @@ import {
   IconButton,
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
+import { useSaveTreasureInfoMutation } from "../../api/capstoneApi";
 
 class TreasureGenerator extends React.Component {
   constructor(props) {
@@ -120,6 +121,34 @@ class TreasureGenerator extends React.Component {
     });
   };
 
+  saveItem = async (index) => {
+    try {
+      const userId = localStorage.getItem("userId");
+
+      if (!userId) {
+        console.error("User ID not found in local storage.");
+        return;
+      }
+
+      const treasureData = this.state.treasure[index];
+      const { type, amount, unit, name } = treasureData;
+
+      // Constructing the treasure item data to be saved
+      const treasureItemData = {
+        type,
+        amount,
+        unit,
+        name,
+        userId, // Assuming userId is required for saving treasure item
+      };
+
+      // Call the mutation to save treasure item data
+      await this.props.saveTreasureInfo(treasureItemData); // Use the mutation hook
+    } catch (error) {
+      console.error("Error saving treasure information:", error);
+    }
+  };
+
   render() {
     return (
       <Container sx={{ bgcolor: "grey", p: 3, ml: 3, borderRadius: 8 }}>
@@ -213,4 +242,10 @@ class TreasureGenerator extends React.Component {
   }
 }
 
-export default TreasureGenerator;
+// Wrap the component with the mutation hook
+const TreasureGeneratorWithMutation = () => {
+  const [saveTreasureInfo] = useSaveTreasureInfoMutation();
+  return <TreasureGenerator saveTreasureInfo={saveTreasureInfo} />;
+};
+
+export default TreasureGeneratorWithMutation;
