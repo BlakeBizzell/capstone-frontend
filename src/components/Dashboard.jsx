@@ -17,14 +17,15 @@ import InitiativeTracker from "./dashboard/Initiative";
 import PlayerTable from "./dashboard/playersInfo";
 import TreasureGenerator from "./dashboard/Treasure";
 import CasinoIcon from "@mui/icons-material/Casino";
-import SaveIcon from "@mui/icons-material/Save"; // Import the save icon
+import SaveIcon from "@mui/icons-material/Save";
 import Stopwatch from "./dashboard/Timer";
 import HitPointTracker from "./dashboard/hitPointTracker";
+import AllSaves from "./dashboard/allSaves";
 
 function DMs() {
   const [dashboardItems, setDashboardItems] = useState([]);
   const [openPopup, setOpenPopup] = useState(false);
-  const [openSavePopup, setOpenSavePopup] = useState(false); 
+  const [openSavePopup, setOpenSavePopup] = useState(false);
 
   const [zoomStates, setZoomStates] = useState({
     Monsters: false,
@@ -96,12 +97,7 @@ function DMs() {
 
       <Grid container spacing={2}>
         {Object.keys(zoomStates).map((item, index) => (
-          <Grid
-            item
-            key={index}
-
-
-          >
+          <Grid item key={index}>
             {item === "Monsters" && zoomStates.Monsters && <Monsters />}
             {item === "Names" && zoomStates.Names && <RandomNameGenerator />}
             {item === "Player Table" && zoomStates["Player Table"] && (
@@ -132,7 +128,7 @@ function DMs() {
       >
         <CasinoIcon style={{ color: "black" }} />
       </Fab>
-      
+
       {/* Save FAB */}
       <Fab
         style={{
@@ -143,15 +139,14 @@ function DMs() {
           width: "75px",
           height: "75px",
         }}
-        onClick={() => setOpenSavePopup(true)} 
+        onClick={() => setOpenSavePopup(true)}
       >
         <SaveIcon style={{ color: "black" }} />
       </Fab>
 
-
       <Dialog open={openSavePopup} onClose={() => setOpenSavePopup(false)}>
         <DialogContent style={{ width: "100% ", height: "100%" }}>
-          <Typography variant="h5">Blank Container</Typography>
+          <AllSaves />
         </DialogContent>
       </Dialog>
 

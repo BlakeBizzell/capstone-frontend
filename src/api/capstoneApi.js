@@ -10,6 +10,7 @@ export const capstoneApi = createApi({
     getProduct: builder.query({ query: (id) => `/api/products/${id}` }),
     getUsers: builder.query({ query: () => "/auth/users" }),
     getUser: builder.query({ query: (id) => `auth/users/${id}` }),
+    getUserSaves: builder.query({ query: (userId) => `/auth/saves/${userId}` }),
     updateProduct: builder.mutation({
       query: ({ id, formData }) => ({
         url: `/api/products/${id}`,
@@ -104,7 +105,7 @@ export const capstoneApi = createApi({
     }),
     saveFeedback: builder.mutation({
       query: (feedbackData) => ({
-        url: "/auth/feedback", 
+        url: "/auth/feedback",
         method: "POST",
         body: feedbackData,
       }),
@@ -117,6 +118,7 @@ export const {
   useGetProductQuery,
   useGetUsersQuery,
   useGetUserQuery,
+  useGetUserSavesQuery,
   useUpdateProductMutation,
   useAddProductMutation,
   useDeleteProductMutation,
@@ -131,5 +133,5 @@ export const {
   useSaveMonsterInfoMutation,
   useSaveRandomNameMutation,
   useSaveTreasureInfoMutation,
-  useSaveFeedbackMutation
+  useSaveFeedbackMutation,
 } = capstoneApi;

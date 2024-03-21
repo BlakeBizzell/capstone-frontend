@@ -5,8 +5,8 @@ function Stopwatch() {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [isCountingUp, setIsCountingUp] = useState(false);
-  const [limit, setLimit] = useState(0); // State for custom time limit
-  const [customTime, setCustomTime] = useState(''); // State for custom time input field
+  const [limit, setLimit] = useState(0); 
+  const [customTime, setCustomTime] = useState(''); 
 
   useEffect(() => {
     let intervalId;
