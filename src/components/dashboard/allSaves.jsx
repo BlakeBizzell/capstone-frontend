@@ -3,7 +3,12 @@ import { useGetUserSavesQuery } from "../../api/capstoneApi";
 
 const AllSaves = () => {
   const [userId, setUserId] = useState(null);
-  const { data: savesData, error, isLoading } = useGetUserSavesQuery(userId);
+  const {
+    data: savesData,
+    error,
+    isLoading,
+    refetch,
+  } = useGetUserSavesQuery(userId);
 
   useEffect(() => {
     // Retrieve userId from local storage
@@ -12,6 +17,10 @@ const AllSaves = () => {
       setUserId(storedUserId);
     }
   }, []);
+
+  const handleRefresh = () => {
+    refetch();
+  };
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -59,6 +68,8 @@ const AllSaves = () => {
           </li>
         ))}
       </ul>
+
+      <button onClick={handleRefresh}>Refresh</button>
     </div>
   );
 };
