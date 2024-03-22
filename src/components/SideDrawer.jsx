@@ -16,7 +16,7 @@ export default function SideDrawer() {
   };
 
   const handleCloseNavMenu = () => {
-    // Close the navigation menu if needed
+
   };
 
   return (

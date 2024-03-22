@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TextField, Button, Typography, Box, Paper } from "@mui/material";
-import { useSaveFeedbackMutation } from "../../api/capstoneApi"; // Adjust the path accordingly
+import { useSaveFeedbackMutation } from "../../api/capstoneApi"; 
 
 const Suggestions = () => {
   const [feedback, setFeedback] = useState("");
@@ -11,19 +11,19 @@ const Suggestions = () => {
     event.preventDefault();
 
     const feedbackData = {
-      feedback: feedback, // Ensure feedback field is included
-      screenshots: screenshots.map((screenshot) => screenshot.name), // Only include screenshot filenames
+      feedback: feedback, 
+      screenshots: screenshots.map((screenshot) => screenshot.name), 
     };
 
     try {
       await saveFeedback(feedbackData);
 
-      // Reset form state after successful submission
+    
       setFeedback("");
       setScreenshots([]);
     } catch (error) {
       console.error("Error submitting feedback:", error);
-      // Handle error state if needed
+ 
     }
   };
 
