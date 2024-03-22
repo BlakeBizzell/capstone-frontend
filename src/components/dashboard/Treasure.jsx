@@ -133,17 +133,17 @@ class TreasureGenerator extends React.Component {
       const treasureData = this.state.treasure[index];
       const { type, amount, unit, name } = treasureData;
 
-      // Constructing the treasure item data to be saved
+
       const treasureItemData = {
         type,
         amount,
         unit,
         name,
-        userId, // Assuming userId is required for saving treasure item
+        userId, 
       };
 
-      // Call the mutation to save treasure item data
-      await this.props.saveTreasureInfo(treasureItemData); // Use the mutation hook
+
+      await this.props.saveTreasureInfo(treasureItemData); 
     } catch (error) {
       console.error("Error saving treasure information:", error);
     }
@@ -242,7 +242,7 @@ class TreasureGenerator extends React.Component {
   }
 }
 
-// Wrap the component with the mutation hook
+
 const TreasureGeneratorWithMutation = () => {
   const [saveTreasureInfo] = useSaveTreasureInfoMutation();
   return <TreasureGenerator saveTreasureInfo={saveTreasureInfo} />;

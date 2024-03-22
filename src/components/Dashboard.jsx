@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Container,
   Grid,
@@ -26,6 +26,20 @@ function DMs() {
   const [dashboardItems, setDashboardItems] = useState([]);
   const [openPopup, setOpenPopup] = useState(false);
   const [openSavePopup, setOpenSavePopup] = useState(false);
+  const [userId, setUserId] = useState(localStorage.getItem("userId"));
+
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setUserId(localStorage.getItem("userId"));
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   const [zoomStates, setZoomStates] = useState({
     Monsters: false,
@@ -115,6 +129,7 @@ function DMs() {
         ))}
       </Grid>
 
+
       <Fab
         style={{
           position: "fixed",
@@ -129,20 +144,22 @@ function DMs() {
         <CasinoIcon style={{ color: "black" }} />
       </Fab>
 
-      {/* Save FAB */}
-      <Fab
-        style={{
-          position: "fixed",
-          bottom: "100px",
-          right: "100px",
-          backgroundColor: "rgba(255, 255, 255, 0.7)",
-          width: "75px",
-          height: "75px",
-        }}
-        onClick={() => setOpenSavePopup(true)}
-      >
-        <SaveIcon style={{ color: "black" }} />
-      </Fab>
+  
+      {userId && (
+        <Fab
+          style={{
+            position: "fixed",
+            bottom: "100px",
+            right: "100px",
+            backgroundColor: "rgba(255, 255, 255, 0.7)",
+            width: "75px",
+            height: "75px",
+          }}
+          onClick={() => setOpenSavePopup(true)}
+        >
+          <SaveIcon style={{ color: "black" }} />
+        </Fab>
+      )}
 
       <Dialog open={openSavePopup} onClose={() => setOpenSavePopup(false)}>
         <DialogContent style={{ width: "100% ", height: "100%" }}>

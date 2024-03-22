@@ -10,7 +10,6 @@ function SpellDetails() {
   useEffect(() => {
     const fetchSpellDetails = async () => {
       try {
-        // Replace the API URL with the correct source for spell data
         const response = await axios.get(
           `https://api.open5e.com/spells/${spellName}`
         );
