@@ -15,12 +15,8 @@ export default function SideDrawer() {
     console.log("Clicked item:", text);
   };
 
-  const handleCloseNavMenu = () => {
-
-  };
-
   return (
-    <Box sx={{ display: "flex", zIndex: -999 }}>
+    <Box sx={{ display: "flex" }}>
       <Drawer
         variant="permanent"
         sx={{
@@ -29,11 +25,15 @@ export default function SideDrawer() {
           [`& .MuiDrawer-paper`]: {
             width: drawerWidth,
             boxSizing: "border-box",
+            backgroundColor: "lightgrey",
+            justifyContent: "center",
+            display: "flex",
+            flexDirection: "column",
           },
         }}
       >
-        <Toolbar  />
-        <Box sx={{ overflow: "auto", zIndex: -999 }}>
+        <Toolbar />
+        <Box sx={{ overflow: "auto" }}>
           {[
             "Spell List",
             "Monsters",
@@ -50,17 +50,13 @@ export default function SideDrawer() {
           ].map((text) => (
             <MenuItem
               key={text}
-              onClick={() => {
-                handleButtonClick(text);
-                handleCloseNavMenu();
-              }}
+              onClick={() => handleButtonClick(text)}
               component={Link}
               to={`/${text.toLowerCase().replace(/\s+/g, "-")}`}
               sx={{
-                backgroundColor:
-                  selectedItem === text ? "lightgrey" : "inherit",
+                backgroundColor: selectedItem === text ? "grey" : "inherit",
                 "&:hover": {
-                  backgroundColor: "lightgrey",
+                  backgroundColor: "grey",
                 },
               }}
             >
@@ -69,6 +65,9 @@ export default function SideDrawer() {
           ))}
         </Box>
       </Drawer>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Toolbar />
+      </Box>
     </Box>
   );
 }
