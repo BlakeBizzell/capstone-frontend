@@ -22,7 +22,7 @@ function Dice() {
   };
 
   return (
-    <Box sx={{ bgcolor: "lightblue", p: 3 }}>
+    <Box sx={{ p: 3 }}>
       <Typography variant="h5" gutterBottom>
         Random Dice Generator
       </Typography>
