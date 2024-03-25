@@ -19,7 +19,7 @@ import { useLogOutUserMutation } from "../api/capstoneApi";
 import { useSelector } from "react-redux";
 
 const pages = ["Dashboard"];
-const settings = ["Account", "Logout", "Donate", "Suggestions"];
+const settings = ["Account", "Logout", "Suggestions"];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -28,7 +28,7 @@ function NavBar() {
   const userId = localStorage.getItem("userId");
 
   const userData = useSelector((state) => state.user);
-  const { username } = userData; 
+  const { username } = userData;
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
