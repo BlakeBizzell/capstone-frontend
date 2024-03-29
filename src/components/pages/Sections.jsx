@@ -10,9 +10,7 @@ function Sections() {
   useEffect(() => {
     const fetchSections = async () => {
       try {
-        const response = await axios.get(
-          `https://api.open5e.com/sections`
-        );
+        const response = await axios.get(`https://api.open5e.com/sections`);
         setSections(response.data.results);
       } catch (error) {
         console.error("Error fetching sections:", error);
@@ -29,18 +27,42 @@ function Sections() {
   const renderDescription = (description) => {
     return description.split("\n").map((item, key) => {
       if (item.startsWith("##")) {
-        return <Typography variant="h3" key={key}>{item.replace("##", "")}</Typography>;
+        return (
+          <Typography variant="h3" key={key}>
+            {item.replace("##", "")}
+          </Typography>
+        );
       } else if (item.startsWith("**")) {
-        return <Typography variant="h5" key={key}>{item.replace("**", "")}</Typography>;
+        return (
+          <Typography variant="h5" key={key}>
+            {item.replace("**", "")}
+          </Typography>
+        );
       } else {
-        return <Typography variant="body1" key={key}>{item}</Typography>;
+        return (
+          <Typography variant="body1" key={key}>
+            {item}
+          </Typography>
+        );
       }
     });
   };
 
   return (
     <div style={{ width: "80%", margin: "auto", padding: "16px" }}>
-      <div style={{ position: "fixed", top: "80px", left: 0, right: 0, zIndex: 1000, backgroundColor: "#fff", borderBottom: "1px solid #ccc" }}>
+      <div
+        style={{
+          position: "fixed",
+          top: "80px",
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          backgroundColor: "#fff",
+          borderBottom: "1px solid #ccc",
+          width: "80%",
+          margin: "auto",
+        }}
+      >
         <TextField
           label="Search"
           variant="outlined"
@@ -51,14 +73,29 @@ function Sections() {
       </div>
 
       <div style={{ paddingTop: "160px" }}>
-        <h1 style={{ textAlign: "center", marginTop: "40px" }}>Sections List</h1>
+        <h1 style={{ textAlign: "center", marginTop: "40px" }}>
+          Sections List
+        </h1>
 
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           {filteredSections.map((section, index) => (
-            <div key={index} style={{ marginBottom: "40px", maxWidth: "800px" }}>
+            <div
+              key={index}
+              style={{ marginBottom: "40px", maxWidth: "800px" }}
+            >
               <Typography variant="h4">{section.name}</Typography>
-              <div style={{ marginTop: "16px" }}>{renderDescription(section.desc)}</div>
-              <Typography variant="body1" style={{ marginTop: "16px" }}>Parent: {section.parent}</Typography>
+              <div style={{ marginTop: "16px" }}>
+                {renderDescription(section.desc)}
+              </div>
+              <Typography variant="body1" style={{ marginTop: "16px" }}>
+                Parent: {section.parent}
+              </Typography>
               <Button
                 variant="contained"
                 color="primary"
@@ -75,7 +112,16 @@ function Sections() {
         </div>
       </div>
 
-      <div style={{ position: "fixed", bottom: 0, left: 1000, right: 0, zIndex: 999, backgroundColor: "#fff" }}>
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 1000,
+          right: 0,
+          zIndex: 999,
+          backgroundColor: "#fff",
+        }}
+      >
         <Button
           variant="contained"
           color="primary"
