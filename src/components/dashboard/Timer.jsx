@@ -1,12 +1,18 @@
-import { useState, useEffect } from 'react';
-import { Box, TextField, Button, FormControlLabel, Switch } from '@mui/material';
+import { useState, useEffect } from "react";
+import {
+  Box,
+  TextField,
+  Button,
+  FormControlLabel,
+  Switch,
+} from "@mui/material";
 
 function Stopwatch() {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [isCountingUp, setIsCountingUp] = useState(false);
-  const [limit, setLimit] = useState(0); 
-  const [customTime, setCustomTime] = useState(''); 
+  const [limit, setLimit] = useState(0);
+  const [customTime, setCustomTime] = useState("");
 
   useEffect(() => {
     let intervalId;
@@ -14,10 +20,10 @@ function Stopwatch() {
     if (isRunning) {
       intervalId = setInterval(() => {
         if (isCountingUp) {
-          setTime(prevTime => prevTime + 1);
+          setTime((prevTime) => prevTime + 1);
         } else {
           if (time > 0) {
-            setTime(prevTime => prevTime - 1);
+            setTime((prevTime) => prevTime - 1);
           } else {
             setIsRunning(false);
           }
@@ -64,42 +70,77 @@ function Stopwatch() {
     const hours = Math.floor(timeInSeconds / 3600);
     const minutes = Math.floor((timeInSeconds % 3600) / 60);
     const seconds = timeInSeconds % 60;
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    return `${hours.toString().padStart(2, "0")}:${minutes
+      .toString()
+      .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
 
   return (
-    <Box sx={{ bgcolor: 'grey', p: 3, ml: 3, borderRadius: 8, overflow: "auto", resize: "both"  }}>
+    <Box
+      sx={{
+        bgcolor: "grey",
+        p: 3,
+        ml: 3,
+        borderRadius: 8,
+        overflow: "auto",
+        resize: "both",
+        textAlign: "center",
+      }}
+    >
       <h1>Stopwatch</h1>
       <p>{formatTime(time)}</p>
-      <Button onClick={handleStart} disabled={isRunning} variant="contained" style={{marginBottom: "20px", marginLeft: "20px"}}>
+      <Button
+        onClick={handleStart}
+        disabled={isRunning}
+        variant="contained"
+        style={{ marginBottom: "20px" }}
+      >
         Start
       </Button>
-      <Button onClick={handlePause} disabled={!isRunning} variant="contained" style={{marginBottom: "20px", marginLeft: "20px"}}>
+      <Button
+        onClick={handlePause}
+        disabled={!isRunning}
+        variant="contained"
+        style={{ marginBottom: "20px" }}
+      >
         Pause
       </Button>
-      <Button onClick={handleReset} variant="contained" style={{marginBottom: "20px", marginLeft: "20px"}}>
+      <Button
+        onClick={handleReset}
+        variant="contained"
+        style={{ marginBottom: "20px" }}
+      >
         Reset
       </Button>
       <br />
-      <Button onClick={() => handlePresetTime(30)} variant="outlined">30s</Button>
-      <Button onClick={() => handlePresetTime(60)} variant="outlined">1min</Button>
-      <Button onClick={() => handlePresetTime(300)} variant="outlined">5min</Button>
+      <Button onClick={() => handlePresetTime(30)} variant="outlined">
+        30s
+      </Button>
+      <Button onClick={() => handlePresetTime(60)} variant="outlined">
+        1min
+      </Button>
+      <Button onClick={() => handlePresetTime(300)} variant="outlined">
+        5min
+      </Button>
       <TextField
         label="Custom Time (seconds)"
         type="number"
         value={customTime}
         onChange={handleCustomTimeChange}
         variant="outlined"
-        style={{ marginTop: '10px' }}
+        style={{ marginTop: "10px" }}
       />
-      <Button onClick={handleCustomTimeSubmit} variant="contained" >
+      <Button onClick={handleCustomTimeSubmit} variant="contained">
         Apply Custom Time
       </Button>
-      {limit > 0 && (
-        <p>Time Limit: {formatTime(limit)}</p>
-      )}
+      {limit > 0 && <p>Time Limit: {formatTime(limit)}</p>}
       <FormControlLabel
-        control={<Switch checked={isCountingUp} onChange={() => setIsCountingUp(!isCountingUp)} />}
+        control={
+          <Switch
+            checked={isCountingUp}
+            onChange={() => setIsCountingUp(!isCountingUp)}
+          />
+        }
         label="Count Up"
       />
     </Box>
