@@ -19,7 +19,7 @@ import { useLogOutUserMutation } from "../api/capstoneApi";
 import { useSelector } from "react-redux";
 
 const pages = ["Dashboard"];
-const settings = ["Account", "Logout", "Suggestions"];
+const settings = ["Account", "Logout", "Suggestions", "Light/Dark"];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
